@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "User")
 public class User {
 	
+	//Pratik
 	private Long id;
 	private String name;
 	
