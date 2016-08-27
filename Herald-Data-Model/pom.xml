@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>herald.location.service</groupId>
-	<artifactId>herald-location-service</artifactId>
+	<groupId>herald.data.model</groupId>
+	<artifactId>herald-data-model</artifactId>
 	<version>1</version>
 	<packaging>jar</packaging>
 
-	<name>Herald-Location-Service1</name>
+	<name>Herald-Data-model</name>
 	<description>Project Herald</description>
 
 	<parent>
