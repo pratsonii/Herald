@@ -1,24 +1,22 @@
 package com.pr.herald.models;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "T_H_Devices")
 public class Devices {
-
 	
 	private String deviceToken;
 	private Long lng;
 	private Long lat;
-	private User user;
+	private String userMailId;// @Id of users table
+	private List<String> favCategories; // Favorite Categories
 	
 	@Id
-	@Column(name = "device_token",length = 512)
 	public String getDeviceToken() {
 		return deviceToken;
 	}
@@ -26,7 +24,6 @@ public class Devices {
 		this.deviceToken = deviceToken;
 	}
 	
-	@Column(name = "long")
 	public Long getLng() {
 		return lng;
 	}
@@ -34,7 +31,6 @@ public class Devices {
 		this.lng = lng;
 	}
 	
-	@Column(name = "lat")
 	public Long getLat() {
 		return lat;
 	}
@@ -42,11 +38,19 @@ public class Devices {
 		this.lat = lat;
 	}
 	
-	@Column(name = "user")
-	public User getUser() {
-		return user;
+	public String getUserMailId() {
+		return userMailId;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserMailId(String userMailId) {
+		this.userMailId = userMailId;
 	}
+	
+	public List<String> getFavCategories() {
+		return favCategories;
+	}
+	public void setFavCategories(List<String> favCategories) {
+		this.favCategories = favCategories;
+	}
+	
+
 }

@@ -14,20 +14,20 @@ import org.springframework.stereotype.Component;
 @Table(name = "T_H_User")
 public class User {
 	
-	private Long id;
 	private String name;
 	private String mailId;
 	private String password;
 	private String phone;
 	private String role;
 	
+	
 	@Id
-	@GeneratedValue(strategy= GenerationType.SEQUENCE)
-	public Long getId() {
-		return id;
+	@Column(name = "mail_id",length = 256)
+	public String getMailId() {
+		return mailId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setMailId(String mailId) {
+		this.mailId = mailId;
 	}
 	
 	@Column(name = "name",length = 256)
@@ -38,13 +38,6 @@ public class User {
 		this.name = name;
 	}
 	
-	@Column(name = "mail_id",length = 256)
-	public String getMailId() {
-		return mailId;
-	}
-	public void setMailId(String mailId) {
-		this.mailId = mailId;
-	}
 	
 	@Column(name = "password",length = 256)
 	public String getPassword() {
@@ -69,4 +62,18 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public User(String name, String mailId, String password, String phone, String role) {
+		super();
+		this.name = name;
+		this.mailId = mailId;
+		this.password = password;
+		this.phone = phone;
+		this.role = role;
+	}
+	public User() {
+		super();
+	}
+	
+	
 }

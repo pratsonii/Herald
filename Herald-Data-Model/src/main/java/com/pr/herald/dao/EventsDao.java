@@ -5,6 +5,6 @@ import org.springframework.data.repository.Repository;
 import com.pr.herald.models.Events;
 
 
-public class EventsDao implements Repository<Events, Long> {
+public interface EventsDao extends Repository<Events, Long> {
 
 }

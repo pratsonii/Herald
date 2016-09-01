@@ -4,6 +4,6 @@ import org.springframework.data.repository.Repository;
 
 import com.pr.herald.models.Categories;
 
-public class CategoryDao implements Repository<Categories, Long> {
+public interface CategoryDao extends Repository<Categories, Long> {
 
 }

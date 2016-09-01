@@ -1,5 +1,7 @@
 package com.pr.herald.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,40 +14,48 @@ import javax.persistence.Table;
 public class Events {
 
 	private Long id;
-	private Devices devices;
+	private String deviceToken;
 	private Long lng;
 	private Long lat;
 	private String header;
 	private String description;
-	private User user;
+	private String userMailId;// @Id of users table
 	private Long notifiedTo;
-	private Categories category;
+	private String categoryName;
 	private String status;
 	private String city;
 	private String state;
 	private String country;
+	private List<String> dislikedByDevice;
+	private List<String> likedByDevice;
+	private Long dislikes;
+	private Long likes;
 	
 	
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.SEQUENCE)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
-	@Column(name = "device_token")
-	public Devices getDevices() {
-		return devices;
+
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setDevices(Devices devices) {
-		this.devices = devices;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	
-	@Column(name = "long")
+	public String getDeviceToken() {
+		return deviceToken;
+	}
+	public void setDeviceToken(String deviceToken) {
+		this.deviceToken = deviceToken;
+	}
+	
 	public Long getLng() {
 		return lng;
 	}
@@ -53,7 +63,6 @@ public class Events {
 		this.lng = lng;
 	}
 	
-	@Column(name = "lat")
 	public Long getLat() {
 		return lat;
 	}
@@ -61,7 +70,6 @@ public class Events {
 		this.lat = lat;
 	}
 	
-	@Column(name = "header")
 	public String getHeader() {
 		return header;
 	}
@@ -69,7 +77,6 @@ public class Events {
 		this.header = header;
 	}
 	
-	@Column(name = "desc")
 	public String getDescription() {
 		return description;
 	}
@@ -77,15 +84,6 @@ public class Events {
 		this.description = description;
 	}
 	
-	@Column(name = "user")
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	@Column(name = "notified_to")
 	public Long getNotifiedTo() {
 		return notifiedTo;
 	}
@@ -93,15 +91,6 @@ public class Events {
 		this.notifiedTo = notifiedTo;
 	}
 	
-	@Column(name = "category")
-	public Categories getCategory() {
-		return category;
-	}
-	public void setCategory(Categories category) {
-		this.category = category;
-	}
-	
-	@Column(name = "status")
 	public String getStatus() {
 		return status;
 	}
@@ -109,7 +98,6 @@ public class Events {
 		this.status = status;
 	}
 	
-	@Column(name = "city")
 	public String getCity() {
 		return city;
 	}
@@ -117,7 +105,6 @@ public class Events {
 		this.city = city;
 	}
 	
-	@Column(name = "state")
 	public String getState() {
 		return state;
 	}
@@ -125,7 +112,6 @@ public class Events {
 		this.state = state;
 	}
 	
-	@Column(name = "country")
 	public String getCountry() {
 		return country;
 	}
@@ -133,7 +119,40 @@ public class Events {
 		this.country = country;
 	}
 	
+	public List<String> getDislikedByDevice() {
+		return dislikedByDevice;
+	}
+	public void setDislikedByDevice(List<String> dislikedByDevice) {
+		this.dislikedByDevice = dislikedByDevice;
+	}
 	
+	public List<String> getLikedByDevice() {
+		return likedByDevice;
+	}
+	public void setLikedByDevice(List<String> likedByDevice) {
+		this.likedByDevice = likedByDevice;
+	}
+	
+	public Long getDislikes() {
+		return dislikes;
+	}
+	public void setDislikes(Long dislikes) {
+		this.dislikes = dislikes;
+	}
+	
+	public Long getLikes() {
+		return likes;
+	}
+	public void setLikes(Long likes) {
+		this.likes = likes;
+	}
+	
+	public String getUserMailId() {
+		return userMailId;
+	}
+	public void setUserMailId(String userMailId) {
+		this.userMailId = userMailId;
+	}
 	
 	
 }
