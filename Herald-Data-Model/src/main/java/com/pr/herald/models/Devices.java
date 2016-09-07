@@ -1,7 +1,9 @@
 package com.pr.herald.models;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,7 +16,12 @@ public class Devices {
 	private Long lng;
 	private Long lat;
 	private String userMailId;// @Id of users table
-	private List<String> favCategories; // Favorite Categories
+//	private List<String> favCategories; // Favorite Categories
+	
+	private Date createdDate;
+	private Date updatedDate;
+	private String createdBy;
+	private String updatedBy;
 	
 	@Id
 	public String getDeviceToken() {
@@ -45,11 +52,39 @@ public class Devices {
 		this.userMailId = userMailId;
 	}
 	
-	public List<String> getFavCategories() {
-		return favCategories;
+//	public List<String> getFavCategories() {
+//		return favCategories;
+//	}
+//	public void setFavCategories(List<String> favCategories) {
+//		this.favCategories = favCategories;
+//	}
+	
+	@Column(updatable = false)
+	public Date getCreatedDate() {
+		return createdDate;
 	}
-	public void setFavCategories(List<String> favCategories) {
-		this.favCategories = favCategories;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	
+	@Column(updatable = false)
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 	
 

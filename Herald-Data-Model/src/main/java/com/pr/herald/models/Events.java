@@ -1,5 +1,6 @@
 package com.pr.herald.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,10 +27,15 @@ public class Events {
 	private String city;
 	private String state;
 	private String country;
-	private List<String> dislikedByDevice;
-	private List<String> likedByDevice;
+//	private List<String> dislikedByDevice;
+//	private List<String> likedByDevice;
 	private Long dislikes;
 	private Long likes;
+	
+	private Date createdDate;
+	private Date updatedDate;
+	private String createdBy;
+	private String updatedBy;
 	
 	
 	
@@ -119,19 +125,19 @@ public class Events {
 		this.country = country;
 	}
 	
-	public List<String> getDislikedByDevice() {
-		return dislikedByDevice;
-	}
-	public void setDislikedByDevice(List<String> dislikedByDevice) {
-		this.dislikedByDevice = dislikedByDevice;
-	}
-	
-	public List<String> getLikedByDevice() {
-		return likedByDevice;
-	}
-	public void setLikedByDevice(List<String> likedByDevice) {
-		this.likedByDevice = likedByDevice;
-	}
+//	public List<String> getDislikedByDevice() {
+//		return dislikedByDevice;
+//	}
+//	public void setDislikedByDevice(List<String> dislikedByDevice) {
+//		this.dislikedByDevice = dislikedByDevice;
+//	}
+//	
+//	public List<String> getLikedByDevice() {
+//		return likedByDevice;
+//	}
+//	public void setLikedByDevice(List<String> likedByDevice) {
+//		this.likedByDevice = likedByDevice;
+//	}
 	
 	public Long getDislikes() {
 		return dislikes;
@@ -153,6 +159,34 @@ public class Events {
 	public void setUserMailId(String userMailId) {
 		this.userMailId = userMailId;
 	}
+
 	
+	@Column(updatable = false)
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	
+	@Column(updatable = false)
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
 	
 }
