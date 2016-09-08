@@ -1,10 +1,10 @@
 package com.pr.herald.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.pr.herald.models.Events;
 
 
-public interface EventsDao extends JpaRepository<Events, Long> {
+public interface EventsDao extends MongoRepository<Events, Long> {
 
 }

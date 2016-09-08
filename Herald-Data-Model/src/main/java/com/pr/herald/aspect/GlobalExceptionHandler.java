@@ -3,7 +3,6 @@ package com.pr.herald.aspect;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.hibernate.id.IdentifierGenerationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,14 +28,7 @@ public class GlobalExceptionHandler
 	public ResponseEntity handleBaseException(HttpServletRequest request, Exception ex)
 	{
 		log.info("--- BaseException Occured:: URL="+request.getRequestURL());
-		return new ResponseEntity(new ResponseEntinty(null, ex.getMessage()), HttpStatus.OK);
+		return new ResponseEntity(new ResponseEntinty(null, ex.getMessage()), HttpStatus.EXPECTATION_FAILED);
 	}
-
 	
-	@ExceptionHandler(IdentifierGenerationException.class)
-	public ResponseEntity handleIdentifierGenerationException(HttpServletRequest request, Exception ex)
-	{
-		log.info("--- IdentifierGenerationExceptionException Occured:: URL="+request.getRequestURL());
-		return new ResponseEntity(new ResponseEntinty(null, ex.getMessage()), HttpStatus.OK);
-	}
 }

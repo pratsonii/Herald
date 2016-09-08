@@ -1,17 +1,12 @@
 package com.pr.herald.models;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "T_H_Events")
+//@Entity
+//@Table(name = "T_H_Events")
+@Document(collection = "T_H_Events")
 public class Events {
 
 	private Long id;
@@ -39,8 +34,8 @@ public class Events {
 	
 	
 	
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@org.springframework.data.annotation.Id
+//	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -161,7 +156,7 @@ public class Events {
 	}
 
 	
-	@Column(updatable = false)
+//	@Column(updatable = false)
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -181,7 +176,7 @@ public class Events {
 		this.createdBy = createdBy;
 	}
 	
-	@Column(updatable = false)
+//	@Column(updatable = false)
 	public String getUpdatedBy() {
 		return updatedBy;
 	}

@@ -1,8 +1,9 @@
 package com.pr.herald.service.impl;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pr.herald.dao.UserDao;
 import com.pr.herald.models.User;

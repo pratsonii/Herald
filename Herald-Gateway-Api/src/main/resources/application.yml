@@ -1,7 +1,10 @@
 server:
-  port: 9000
+  port: 8080
 zuul:
   routes:
-    cal:
-      path: /app/**
+    admin:
+      path: /adminApp/**
       url: http://localhost:8082
+    user:
+      path: /userApp/**
+      url: http://localhost:8084

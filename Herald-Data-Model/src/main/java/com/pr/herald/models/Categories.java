@@ -2,16 +2,14 @@ package com.pr.herald.models;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Entity
-@Component
-@Table(name = "T_H_Categories")
+//@Entity
+//@Component
+//@Table(name = "T_H_Categories")
+@Document(collection = "T_H_Categories")
 public class Categories {
 	
 	private String categoryName;
@@ -23,7 +21,7 @@ public class Categories {
 	private String updatedBy;
 	
 
-	@Id
+	@org.springframework.data.annotation.Id
 	public String getCategoryName() {
 		return categoryName;
 	}
@@ -38,7 +36,7 @@ public class Categories {
 		this.parentCategoryName = parentCategoryName;
 	}
 	
-	@Column(updatable = false)
+//	@Column(updatable = false)
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -58,7 +56,7 @@ public class Categories {
 		this.createdBy = createdBy;
 	}
 	
-	@Column(updatable = false)
+//	@Column(updatable = false)
 	public String getUpdatedBy() {
 		return updatedBy;
 	}

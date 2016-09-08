@@ -2,18 +2,13 @@ package com.pr.herald.models;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import org.springframework.stereotype.Component;
-
-@Entity
-@Component
-@Table(name = "T_H_User")
+//@Entity
+//@Component
+//@Table(name = "T_H_User")
+@Document(collection = "T_H_User")
 public class User {
 	
 	private String name;
@@ -28,8 +23,8 @@ public class User {
 	private String updatedBy;
 	
 	
-	@Id
-	@Column(name = "mail_id",length = 256)
+	@org.springframework.data.annotation.Id
+//	@Column(name = "mail_id",length = 256)
 	public String getMailId() {
 		return mailId;
 	}
@@ -37,7 +32,7 @@ public class User {
 		this.mailId = mailId;
 	}
 	
-	@Column(name = "name",length = 256)
+//	@Column(name = "name",length = 256)
 	public String getName() {
 		return name;
 	}
@@ -46,7 +41,7 @@ public class User {
 	}
 	
 	
-	@Column(name = "password",length = 256)
+//	@Column(name = "password",length = 256)
 	public String getPassword() {
 		return password;
 	}
@@ -54,7 +49,7 @@ public class User {
 		this.password = password;
 	}
 	
-	@Column(name = "phone",length = 256)
+//	@Column(name = "phone",length = 256)
 	public String getPhone() {
 		return phone;
 	}
@@ -62,7 +57,7 @@ public class User {
 		this.phone = phone;
 	}
 	
-	@Column(name = "role",length = 50)
+//	@Column(name = "role",length = 50)
 	public String getRole() {
 		return role;
 	}
@@ -70,7 +65,7 @@ public class User {
 		this.role = role;
 	}
 	
-	@Column(updatable = false)
+//	@Column(updatable = false)
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -90,7 +85,7 @@ public class User {
 		this.createdBy = createdBy;
 	}
 	
-	@Column(updatable = false)
+//	@Column(updatable = false)
 	public String getUpdatedBy() {
 		return updatedBy;
 	}

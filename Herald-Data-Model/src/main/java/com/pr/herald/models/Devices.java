@@ -1,15 +1,13 @@
 package com.pr.herald.models;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "T_H_Devices")
+import org.springframework.data.mongodb.core.mapping.Document;
+
+//@Entity
+//@Table(name = "T_H_Devices")
+@Document(collection = "T_H_Devices")
 public class Devices {
 	
 	private String deviceToken;
@@ -23,7 +21,7 @@ public class Devices {
 	private String createdBy;
 	private String updatedBy;
 	
-	@Id
+	@org.springframework.data.annotation.Id
 	public String getDeviceToken() {
 		return deviceToken;
 	}
@@ -59,7 +57,7 @@ public class Devices {
 //		this.favCategories = favCategories;
 //	}
 	
-	@Column(updatable = false)
+//	@Column(updatable = false)
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -79,7 +77,7 @@ public class Devices {
 		this.createdBy = createdBy;
 	}
 	
-	@Column(updatable = false)
+//	@Column(updatable = false)
 	public String getUpdatedBy() {
 		return updatedBy;
 	}
