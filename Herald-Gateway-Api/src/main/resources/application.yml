@@ -1,0 +1,7 @@
+server:
+  port: 9000
+zuul:
+  routes:
+    cal:
+      path: /app/**
+      url: http://localhost:8082
