@@ -25,4 +25,15 @@ public class UserImpl implements UserServ {
 		dao.save(u);
 	}
 
+	@Override
+	public User getUserByUsername(String email) 
+	{
+		return dao.findByMailId(email);
+	}
+
+	@Override
+	public boolean validateMail(User user) 
+	{
+		return false;
+	}
 }

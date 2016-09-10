@@ -3,7 +3,7 @@ package com.pr.herald.base;
 public class BaseException extends Exception 
 {
 	private static final long serialVersionUID = 1L;
-	private String message;
+	private final String message;
 	
 	public BaseException(String message) {
 		super();
@@ -12,9 +12,5 @@ public class BaseException extends Exception
 
 	public String getMessage() {
 		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
 	}	
 }

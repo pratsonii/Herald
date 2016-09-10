@@ -1,15 +1,15 @@
 package com.pr.herald.base;
 
-public class ResponseEntinty<T> 
+public class RespEntity<T> 
 {
 	private T data;
 	private String message;
 	
-	public ResponseEntinty() {
+	public RespEntity() {
 		super();
 	}
 	
-	public ResponseEntinty(T data, String message) {
+	public RespEntity(T data, String message) {
 		super();
 		this.data = data;
 		this.message = message;

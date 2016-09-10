@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.pr.herald.base.BaseException;
-import com.pr.herald.base.ResponseEntinty;
+import com.pr.herald.base.RespEntity;
 import com.pr.herald.contants.Constants;
 
 @ControllerAdvice
@@ -21,14 +21,14 @@ public class GlobalExceptionHandler
 	public ResponseEntity handleNullPointerException(HttpServletRequest request, Exception ex)
 	{
 		log.info("--- NullPointerException Occured:: URL="+request.getRequestURL());
-		return new ResponseEntity(new ResponseEntinty(null, Constants.noData), HttpStatus.EXPECTATION_FAILED);
+		return new ResponseEntity(new RespEntity(null, Constants.noData), HttpStatus.EXPECTATION_FAILED);
 	}
 	
 	@ExceptionHandler(BaseException.class)
 	public ResponseEntity handleBaseException(HttpServletRequest request, Exception ex)
 	{
 		log.info("--- BaseException Occured:: URL="+request.getRequestURL());
-		return new ResponseEntity(new ResponseEntinty(null, ex.getMessage()), HttpStatus.EXPECTATION_FAILED);
+		return new ResponseEntity(new RespEntity(null, ex.getMessage()), HttpStatus.EXPECTATION_FAILED);
 	}
 	
 }

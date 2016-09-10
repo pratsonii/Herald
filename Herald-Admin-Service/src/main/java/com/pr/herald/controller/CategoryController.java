@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pr.herald.base.BaseException;
-import com.pr.herald.base.ResponseEntinty;
+import com.pr.herald.base.RespEntity;
 import com.pr.herald.contants.Constants;
 import com.pr.herald.dto.CategoryRequestDto;
 import com.pr.herald.models.Categories;
@@ -34,8 +34,8 @@ public class CategoryController
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
 	public ResponseEntity findAllCategory()
 	{
-		return new ResponseEntity<ResponseEntinty<List<Categories>>>
-		(new ResponseEntinty<List<Categories>>(category.findAllCategory(), "Success"), HttpStatus.OK
+		return new ResponseEntity<ResponseEntity<List<Categories>>>
+		(new ResponseEntity<List<Categories>>(category.findAllCategory(), "Success"), HttpStatus.OK
 				);
 	}
 	

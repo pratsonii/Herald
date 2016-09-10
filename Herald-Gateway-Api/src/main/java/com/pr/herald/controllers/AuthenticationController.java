@@ -30,6 +30,7 @@ import com.pr.herald.dto.AuthRequestDto;
 import com.pr.herald.dto.AuthResponseDto;
 import com.pr.herald.models.SecurityUser;
 import com.pr.herald.models.User;
+import com.pr.herald.service.UserServ;
 import com.pr.herald.utils.TokenUtils;
 
 
@@ -52,6 +53,9 @@ public class AuthenticationController {
 
   @Autowired
   private UserDao userDao;
+  
+  @Autowired
+  private UserServ userServ;
 
   @RequestMapping(method = RequestMethod.POST)
   public ResponseEntity<?> authenticationRequest(@RequestBody AuthRequestDto authenticationRequest, Device device) throws AuthenticationException {
@@ -89,18 +93,16 @@ public class AuthenticationController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody User user) throws AuthenticationException, BaseException 
     {
-
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
-//        String hashedPassword = user.getPassword();
-        User newUser = new User(user.getName(), user.getMailId(), hashedPassword,  null, user.getRole());
+        User newUser = new User(user.getName(), user.getMailId().toLowerCase(), hashedPassword,  null, user.getRole());
         try
         {
         	userDao.insert(newUser);
         }
         catch(DuplicateKeyException e)
         {
-        	throw new BaseException("Mail '"+user.getMailId()+"' is already registerd with us!");
+        	throw new BaseException("Mail '"+newUser.getMailId()+"' is already registerd with us!");
         }
         return new ResponseEntity<String>(Constants.registerSuccess, HttpStatus.OK);
     }

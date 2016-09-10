@@ -7,4 +7,4 @@ zuul:
       url: http://localhost:8082
     user:
       path: /userApp/**
-      url: http://localhost:8084
+      url: http://localhost:8090

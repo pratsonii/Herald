@@ -1,7 +1,7 @@
 package com.pr.herald.models;
 
 import java.util.Date;
-
+import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,10 +11,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Devices {
 	
 	private String deviceToken;
-	private Long lng;
-	private Long lat;
+	private Location location;
 	private String userMailId;// @Id of users table
-//	private List<String> favCategories; // Favorite Categories
+	private List<String> favCategories; // Favorite Categories
 	
 	private Date createdDate;
 	private Date updatedDate;
@@ -29,18 +28,11 @@ public class Devices {
 		this.deviceToken = deviceToken;
 	}
 	
-	public Long getLng() {
-		return lng;
+	public Location getLocation() {
+		return location;
 	}
-	public void setLng(Long lng) {
-		this.lng = lng;
-	}
-	
-	public Long getLat() {
-		return lat;
-	}
-	public void setLat(Long lat) {
-		this.lat = lat;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 	
 	public String getUserMailId() {
@@ -50,12 +42,12 @@ public class Devices {
 		this.userMailId = userMailId;
 	}
 	
-//	public List<String> getFavCategories() {
-//		return favCategories;
-//	}
-//	public void setFavCategories(List<String> favCategories) {
-//		this.favCategories = favCategories;
-//	}
+	public List<String> getFavCategories() {
+		return favCategories;
+	}
+	public void setFavCategories(List<String> favCategories) {
+		this.favCategories = favCategories;
+	}
 	
 //	@Column(updatable = false)
 	public Date getCreatedDate() {

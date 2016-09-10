@@ -1,7 +1,10 @@
 package com.pr.herald.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 //@Entity
@@ -9,10 +12,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "T_H_Events")
 public class Events {
 
-	private Long id;
+	private String id;
 	private String deviceToken;
-	private Long lng;
-	private Long lat;
+	private Location location;
 	private String header;
 	private String description;
 	private String userMailId;// @Id of users table
@@ -22,8 +24,8 @@ public class Events {
 	private String city;
 	private String state;
 	private String country;
-//	private List<String> dislikedByDevice;
-//	private List<String> likedByDevice;
+	private Set<String> dislikedByDevice = new HashSet<>();
+	private Set<String> likedByDevice = new HashSet<>();
 	private Long dislikes;
 	private Long likes;
 	
@@ -33,19 +35,17 @@ public class Events {
 	private String updatedBy;
 	
 	
-	
-	@org.springframework.data.annotation.Id
-//	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	public Long getId() {
+	@Id
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getCategoryName() {
 		return categoryName;
 	}
+	
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
@@ -57,18 +57,11 @@ public class Events {
 		this.deviceToken = deviceToken;
 	}
 	
-	public Long getLng() {
-		return lng;
+	public Location getLocation() {
+		return location;
 	}
-	public void setLng(Long lng) {
-		this.lng = lng;
-	}
-	
-	public Long getLat() {
-		return lat;
-	}
-	public void setLat(Long lat) {
-		this.lat = lat;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 	
 	public String getHeader() {
@@ -120,19 +113,19 @@ public class Events {
 		this.country = country;
 	}
 	
-//	public List<String> getDislikedByDevice() {
-//		return dislikedByDevice;
-//	}
-//	public void setDislikedByDevice(List<String> dislikedByDevice) {
-//		this.dislikedByDevice = dislikedByDevice;
-//	}
-//	
-//	public List<String> getLikedByDevice() {
-//		return likedByDevice;
-//	}
-//	public void setLikedByDevice(List<String> likedByDevice) {
-//		this.likedByDevice = likedByDevice;
-//	}
+	public Set<String> getDislikedByDevice() {
+		return dislikedByDevice;
+	}
+	public void setDislikedByDevice(Set<String> dislikedByDevice) {
+		this.dislikedByDevice = dislikedByDevice;
+	}
+	
+	public Set<String> getLikedByDevice() {
+		return likedByDevice;
+	}
+	public void setLikedByDevice(Set<String> likedByDevice) {
+		this.likedByDevice = likedByDevice;
+	}
 	
 	public Long getDislikes() {
 		return dislikes;
