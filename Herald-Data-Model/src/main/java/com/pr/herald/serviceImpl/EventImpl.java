@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pr.herald.contants.Constants.EventReaction;
 import com.pr.herald.contants.Constants.EventStatus;
 import com.pr.herald.dao.EventsDao;
+import com.pr.herald.dao.PlansDao;
 import com.pr.herald.dao.impl.EventDaoImpl;
 import com.pr.herald.dto.DeviceRequestDto;
 import com.pr.herald.dto.EventReactionDto;
@@ -28,12 +29,16 @@ public class EventImpl implements EventServ
 	@Autowired
 	EventDaoImpl daoImpl;
 	
+	@Autowired
+	PlansDao planDao;
+	
 	@Override
 	public void addEvent(Events e) 
 	{	
 		e.setCreatedDate(new Date());
 		e.setUpdatedDate(new Date());
 		e.setStatus(EventStatus.active);
+		e.setLife(planDao.findOne(e.getPlanId()).getLife());
 		
 		dao.insert(e);
 	}
@@ -74,6 +79,7 @@ public class EventImpl implements EventServ
 									    String category, 
 									    Long distance) 
 	{
+		daoImpl.find(EventStatus.active, new Date());
 		return daoImpl.findEventsNearPoint(lng, lat, distance, category, EventStatus.active);
 	}
 
@@ -83,6 +89,9 @@ public class EventImpl implements EventServ
 		return dao.findByUserMailIdOrderByStatusAscCreatedDateDesc(mailId);
 	}
 	
-	
+	public void deactivateCompletedEvents()
+	{
+		
+	}
 
 }

@@ -20,6 +20,7 @@ public class EventRequestDto
 	private String city;
 	private String state;
 	private String country;
+	private String planId;
 	
 
 	public String getId() {
@@ -90,6 +91,13 @@ public class EventRequestDto
 		this.country = country;
 	}
 	
+	public String getPlanId() {
+		return planId;
+	}
+	public void setPlanId(String planId) {
+		this.planId = planId;
+	}
+	
 	public Events convertToModel(Events e)
 	{
 		if(e == null)
@@ -106,6 +114,7 @@ public class EventRequestDto
 		e.setCity(city);
 		e.setState(state);
 		e.setCountry(country);
+		e.setPlanId(planId);
 		
 		return e;
 	}

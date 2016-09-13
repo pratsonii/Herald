@@ -7,8 +7,6 @@ import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//@Entity
-//@Table(name = "T_H_Events")
 @Document(collection = "T_H_Events")
 public class Events {
 
@@ -28,6 +26,8 @@ public class Events {
 	private Set<String> likedByDevice = new HashSet<>();
 	private Long dislikes;
 	private Long likes;
+	private String planId;
+	private Long life;
 	
 	private Date createdDate;
 	private Date updatedDate;
@@ -177,4 +177,16 @@ public class Events {
 		this.updatedBy = updatedBy;
 	}
 	
+	public String getPlanId() {
+		return planId;
+	}
+	public void setPlanId(String planId) {
+		this.planId = planId;
+	}
+	public Long getLife() {
+		return life;
+	}
+	public void setLife(Long life) {
+		this.life = life;
+	}
 }
