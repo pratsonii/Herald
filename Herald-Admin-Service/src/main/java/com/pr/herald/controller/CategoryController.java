@@ -32,10 +32,11 @@ public class CategoryController
 	}
 	
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
-	public ResponseEntity findAllCategory()
+	public ResponseEntity<RespEntity<List<Categories>>> findAllCategory()
 	{
-		return new ResponseEntity<ResponseEntity<List<Categories>>>
-		(new ResponseEntity<List<Categories>>(category.findAllCategory(), "Success"), HttpStatus.OK
+		return new ResponseEntity<RespEntity<List<Categories>>>
+		
+		((new RespEntity<List<Categories>>(category.findAllCategory(),"Success")), HttpStatus.OK
 				);
 	}
 	

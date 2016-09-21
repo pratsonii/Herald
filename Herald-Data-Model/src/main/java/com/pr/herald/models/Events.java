@@ -17,7 +17,7 @@ public class Events {
 	private String description;
 	private String userMailId;// @Id of users table
 	private Long notifiedTo;
-	private String categoryName;
+	private Set<String> categoryName = new HashSet<>();;
 	private String status;
 	private String city;
 	private String state;
@@ -41,12 +41,12 @@ public class Events {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getCategoryName() {
+	}	
+	
+	public Set<String> getCategoryName() {
 		return categoryName;
 	}
-	
-	public void setCategoryName(String categoryName) {
+	public void setCategoryName(Set<String> categoryName) {
 		this.categoryName = categoryName;
 	}
 	

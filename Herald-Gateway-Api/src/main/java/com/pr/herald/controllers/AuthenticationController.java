@@ -33,9 +33,13 @@ import com.pr.herald.models.User;
 import com.pr.herald.service.UserServ;
 import com.pr.herald.utils.TokenUtils;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 
 @RestController
 @RequestMapping("${javatab.route.authentication}")
+@Api
 public class AuthenticationController {
 
 
@@ -57,6 +61,7 @@ public class AuthenticationController {
   @Autowired
   private UserServ userServ;
 
+  @ApiOperation("User Authentication")
   @RequestMapping(method = RequestMethod.POST)
   public ResponseEntity<?> authenticationRequest(@RequestBody AuthRequestDto authenticationRequest, Device device) throws AuthenticationException {
 
@@ -90,12 +95,13 @@ public class AuthenticationController {
     }
   }
 
+  @ApiOperation("User Registration")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody User user) throws AuthenticationException, BaseException 
     {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
-        User newUser = new User(user.getName(), user.getMailId().toLowerCase(), hashedPassword,  null, user.getRole());
+        User newUser = new User(user.getName(), user.getMailId().toLowerCase(), hashedPassword,  null, user.getRole()==null?"ROLE_USER":user.getRole());
         try
         {
         	userDao.insert(newUser);

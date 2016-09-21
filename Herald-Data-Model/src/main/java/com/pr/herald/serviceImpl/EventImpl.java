@@ -79,7 +79,7 @@ public class EventImpl implements EventServ
 									    String category, 
 									    Long distance) 
 	{
-		daoImpl.find(EventStatus.active, new Date());
+		daoImpl.findOverdueEvents(EventStatus.active, new Date());
 		return daoImpl.findEventsNearPoint(lng, lat, distance, category, EventStatus.active);
 	}
 
