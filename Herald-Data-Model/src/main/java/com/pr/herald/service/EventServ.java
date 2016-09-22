@@ -9,7 +9,7 @@ import com.pr.herald.models.Events;
 
 public interface EventServ 
 {
-	void addEvent(Events e);
+	Events addEvent(Events e);
 	
 	void updateEvent(EventRequestDto dto);
 	

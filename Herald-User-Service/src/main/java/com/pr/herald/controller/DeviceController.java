@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/device")
-@Api(value="Main App")
+@Api(value="Device Controller")
 public class DeviceController 
 {
 	@Autowired

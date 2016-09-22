@@ -7,8 +7,10 @@ import org.springframework.context.annotation.Bean;
 import reactor.core.Environment;
 import reactor.core.Reactor;
 import reactor.core.spec.Reactors;
+import reactor.spring.context.config.EnableReactor;
 
 @SpringBootApplication
+@EnableReactor
 public class HeraldDeviceNotifierApplication {
 
 	public static void main(String[] args) {

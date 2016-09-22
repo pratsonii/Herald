@@ -3,11 +3,13 @@ package com.pr.herald.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -17,6 +19,7 @@ import com.pr.herald.dto.DeviceRequestDto;
 import com.pr.herald.dto.EventReactionDto;
 import com.pr.herald.dto.EventRequestDto;
 import com.pr.herald.dto.EventResponseDto;
+import com.pr.herald.models.Events;
 import com.pr.herald.service.EventServ;
 
 import io.swagger.annotations.Api;
@@ -27,14 +30,21 @@ import io.swagger.annotations.ApiOperation;
 @Api("Event Controller")
 public class EventController 
 {
+	@Value("${event.notification.address}")
+	private String notifierAddress;
+	
 	@Autowired
 	EventServ serv;
+	
+	@Autowired
+	RestTemplate rt;
 	
 	@ApiOperation("add event")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity addEvent(@RequestBody EventRequestDto dto)
 	{
-		serv.addEvent(dto.convertToModel(null));
+		Events e = serv.addEvent(dto.convertToModel(null));
+		rt.postForObject(notifierAddress, e.getId(), ResponseEntity.class);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	

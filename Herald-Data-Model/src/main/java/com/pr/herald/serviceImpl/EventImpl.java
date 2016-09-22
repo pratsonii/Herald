@@ -13,7 +13,6 @@ import com.pr.herald.contants.Constants.EventStatus;
 import com.pr.herald.dao.EventsDao;
 import com.pr.herald.dao.PlansDao;
 import com.pr.herald.dao.impl.EventDaoImpl;
-import com.pr.herald.dto.DeviceRequestDto;
 import com.pr.herald.dto.EventReactionDto;
 import com.pr.herald.dto.EventRequestDto;
 import com.pr.herald.models.Events;
@@ -22,7 +21,7 @@ import com.pr.herald.service.EventServ;
 @Service
 @Transactional
 public class EventImpl implements EventServ 
-{
+{	
 	@Autowired
 	EventsDao dao;
 	
@@ -33,14 +32,14 @@ public class EventImpl implements EventServ
 	PlansDao planDao;
 	
 	@Override
-	public void addEvent(Events e) 
+	public Events addEvent(Events e) 
 	{	
 		e.setCreatedDate(new Date());
 		e.setUpdatedDate(new Date());
 		e.setStatus(EventStatus.active);
 		e.setLife(planDao.findOne(e.getPlanId()).getLife());
 		
-		dao.insert(e);
+		return dao.insert(e);
 	}
 
 	@Override

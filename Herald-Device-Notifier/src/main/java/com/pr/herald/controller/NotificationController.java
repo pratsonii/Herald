@@ -4,9 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.pr.herald.reactor.DATA_TYPE;
 import com.pr.herald.reactor.Event;
 import com.pr.herald.reactor.NotificationData;
@@ -20,8 +24,8 @@ public class NotificationController
 	@Autowired
 	Publisher publisher;
 	
-	@RequestMapping("/event")
-	public void sendNotification(@RequestParam String eventId)
+	@RequestMapping(value="/event", method = RequestMethod.POST)
+	public ResponseEntity sendNotification(@RequestBody String eventId)
 	{
 		Map<String,Object> data = new HashMap<>();
 		data.put(DATA_TYPE.eventId.name(), eventId);
@@ -29,5 +33,6 @@ public class NotificationController
 		nData.setEvent(Event.deviceNotification);
 		nData.setData(data);
 		publisher.fireEvent(nData);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

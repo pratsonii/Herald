@@ -1,6 +1,7 @@
 package com.pr.herald.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,7 +30,7 @@ public class DeviceDaoImpl
 	@Qualifier("db")
 	MongoDatabase db;
 	
-	public List<Devices> findDevicesToNotify(Double lng, Double lat, Long distance, String favCategory)
+	public List<Devices> findDevicesToNotify(Double lng, Double lat, Long distance, Set<String> favCategory)
 	{
 		Point point = new Point(lng, lat);
 		Distance d = new Distance(distance, Metrics.KILOMETERS);
@@ -37,7 +38,7 @@ public class DeviceDaoImpl
 
 		return
 			    template.find(new Query(Criteria.where("location").withinSphere(c))
-			    				 .addCriteria(Criteria.where("favCategories").is(favCategory)), 
+			    				 .addCriteria(Criteria.where("favCategories").in(favCategory)), 
 			    				 Devices.class);
 		
 	}

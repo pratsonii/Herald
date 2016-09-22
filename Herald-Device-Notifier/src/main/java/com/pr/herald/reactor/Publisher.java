@@ -17,8 +17,8 @@ public class Publisher
 
 	public void fireEvent(NotificationData nData) 
 	{
-		log.info("--- In Publish");
+		log.info("--- In Common Publisher");
 		reactor.notify(nData.getEvent().name(), Event.wrap(nData));
-		log.info("--- Out Publish");
+		log.info("--- Out Common Publisher");
 	}
 }
