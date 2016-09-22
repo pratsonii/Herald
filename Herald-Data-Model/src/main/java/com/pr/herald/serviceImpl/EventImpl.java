@@ -79,7 +79,6 @@ public class EventImpl implements EventServ
 									    String category, 
 									    Long distance) 
 	{
-		daoImpl.findOverdueEvents(EventStatus.active, new Date());
 		return daoImpl.findEventsNearPoint(lng, lat, distance, category, EventStatus.active);
 	}
 
@@ -92,6 +91,24 @@ public class EventImpl implements EventServ
 	public void deactivateCompletedEvents()
 	{
 		
+	}
+
+	@Override
+	public List<Events> upgradeToFeatured() 
+	{
+		daoImpl.upgradeToFeatured();
+		
+		return null;
+	}
+	
+
+
+	@Override
+	public List<Events> deActivateDislikedEvents() 
+	{
+		daoImpl.deActivateDislikedEvents();
+		
+		return null;
 	}
 
 }

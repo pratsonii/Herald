@@ -24,8 +24,8 @@ public class Events {
 	private String country;
 	private Set<String> dislikedByDevice = new HashSet<>();
 	private Set<String> likedByDevice = new HashSet<>();
-	private Long dislikes;
-	private Long likes;
+	private Long dislikes = 0L;
+	private Long likes = 0L;
 	private String planId;
 	private Long life;
 	

@@ -21,6 +21,7 @@ public class GlobalExceptionHandler
 	public ResponseEntity handleNullPointerException(HttpServletRequest request, Exception ex)
 	{
 		log.info("--- NullPointerException Occured:: URL="+request.getRequestURL());
+		log.info(ex.getMessage());
 		return new ResponseEntity(new RespEntity(null, Constants.noData), HttpStatus.EXPECTATION_FAILED);
 	}
 	

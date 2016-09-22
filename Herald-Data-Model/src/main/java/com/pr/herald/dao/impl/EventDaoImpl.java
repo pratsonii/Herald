@@ -8,18 +8,12 @@ import java.util.List;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.geo.Circle;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
-import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.aggregation.Fields;
-import org.springframework.data.mongodb.core.aggregation.ProjectionOperation;
-import org.springframework.data.mongodb.core.aggregation.ProjectionOperation.ProjectionOperationBuilder;
-import org.springframework.data.mongodb.core.query.BasicQuery;
 //import org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -28,17 +22,21 @@ import org.springframework.stereotype.Component;
 
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.client.AggregateIterable;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.pr.herald.contants.Constants.EventCategories;
 import com.pr.herald.contants.Constants.EventStatus;
 import com.pr.herald.models.Events;
 
 @Component
 public class EventDaoImpl  
 {
+	@Value("${events.max.likes}")
+	private Long maxLikes;
+
+	@Value("${events.max.dislikes}")
+	private Long maxDisLikes;
+	
 	@Autowired
 	MongoTemplate template;
 	
@@ -49,6 +47,26 @@ public class EventDaoImpl
 	public void updateOverDueEvents(String eventId, String eventStatus)
 	{
 		template.updateFirst(new Query(Criteria.where("_id").is(eventId)), Update.update("status", eventStatus), Events.class);
+	}
+	
+	public void upgradeToFeatured()
+	{
+		Query q = new Query(Criteria.where("status").is(EventStatus.active) 
+			    									.and("categoryName").ne(EventCategories.featured)
+			    									.and("likes").gt(maxLikes));
+		
+		
+		template.updateMulti(q, new Update().addToSet("categoryName", EventCategories.featured), Events.class);
+	}
+	
+	public void deActivateDislikedEvents()
+	{
+
+		Query q = new Query(Criteria.where("status").is(EventStatus.active) 
+			    									.and("categoryName").ne(EventCategories.featured)
+			    									.and("dislikes").gt(maxDisLikes));
+		
+		template.updateMulti(q, new Update().set("status", EventStatus.inActive), Events.class);
 	}
 	
 	public List<Events> findEventsNearPoint(Double lng, Double lat, Long distance, String category, String status)

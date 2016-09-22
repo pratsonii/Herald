@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationStartup implements ApplicationListener<ApplicationReadyEvent> 
 {
-
-	@Autowired
-	TestTask task;
 	
 	@Autowired
 	EventFinishTask eventFinishTask;

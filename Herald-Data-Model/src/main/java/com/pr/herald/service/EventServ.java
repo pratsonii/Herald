@@ -21,4 +21,8 @@ public interface EventServ
 								 Long distance);
 	
 	List<Events> getUserEvents(String mailId);
+	
+	List<Events> upgradeToFeatured();
+	
+	List<Events> deActivateDislikedEvents() ;
 }

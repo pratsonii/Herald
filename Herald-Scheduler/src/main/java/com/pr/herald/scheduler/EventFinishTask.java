@@ -53,8 +53,8 @@ public class EventFinishTask extends TimerTask
         Timer timer = new Timer();  
         
         Date d = new Date();
-        d.setHours(23);
-        d.setMinutes(37);
+        d.setHours(0);
+        d.setMinutes(0);
         d.setSeconds(0);
         
         timer.schedule(task, d, ONCE_PER_DAY);

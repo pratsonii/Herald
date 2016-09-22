@@ -16,6 +16,11 @@ public class Constants
 		public static final String active = "Active";
 		public static final String inActive = "In Active";
 	}
+
+	public static class EventCategories
+	{
+		public static final String featured = "Featured";
+	}
 	
 	public static class EventReaction
 	{

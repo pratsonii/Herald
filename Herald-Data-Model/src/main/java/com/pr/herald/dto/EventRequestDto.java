@@ -110,7 +110,7 @@ public class EventRequestDto
 		e.setHeader(header);
 		e.setDescription(description);
 		e.setUserMailId(userMailId);
-		e.setCategoryName(categoryName);
+		e.getCategoryName().add(categoryName);
 		e.setCity(city);
 		e.setState(state);
 		e.setCountry(country);
