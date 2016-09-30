@@ -1,4 +1,0 @@
-db.T_H_Events.createIndex({location:'2dsphere', categoryName:1, status:1});
-
-db.T_H_Events.createIndex({userMailId:1});
-

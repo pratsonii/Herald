@@ -85,7 +85,7 @@ public class EventDaoImpl
 	
 	public List<Document> findOverdueEvents(String status, Date date)
 	{
-		MongoCollection<Document> col = db.getCollection("T_H_Events");
+		MongoCollection<Document> col = db.getCollection("events");
 		
 		BasicDBList multiply  = new BasicDBList();
 		multiply.add("$life");

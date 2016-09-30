@@ -10,6 +10,7 @@ public class Plans
 {
 	private String id;
 	private String name;
+	private String status;
 	private Long life;
 	private Double price;
 	private Long impect;
@@ -75,6 +76,10 @@ public class Plans
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-	
-	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

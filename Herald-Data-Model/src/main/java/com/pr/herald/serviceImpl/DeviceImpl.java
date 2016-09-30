@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pr.herald.dao.DevicesDao;
+import com.pr.herald.dto.DeviceRequestDto;
 import com.pr.herald.models.Devices;
 import com.pr.herald.service.DeviceServ;
 
@@ -18,13 +19,38 @@ public class DeviceImpl implements DeviceServ
 	DevicesDao dao;
 	
 	@Override
-	public void upsertDevice(Devices d) 
+	public Devices upsertDevice(Devices d) 
 	{
-		d = dao.save(d);
-		if(d.getCreatedDate() == null)
+		Devices device = dao.findOne(d.getDeviceToken());
+		
+		if(device == null)
 		{
 			d.setCreatedDate(new Date());
-			d = dao.save(d);
+			dao.save(d);
+			device = d;
 		}
+		else
+		{
+			device.setUpdatedDate(new Date());
+			dao.save(device);
+		}
+		
+		return device;
+	}
+
+	@Override
+	public void addFavorite(DeviceRequestDto dto) 
+	{
+		Devices d = dao.findOne(dto.getDeviceToken());
+		d.getFavCategories().add(dto.getCategory()); 
+		dao.save(d);
+	}
+
+	@Override
+	public void removeFavorite(DeviceRequestDto dto) 
+	{
+		Devices d = dao.findOne(dto.getDeviceToken());
+		d.getFavCategories().remove(dto.getCategory()); 
+		dao.save(d);
 	}
 }

@@ -1,19 +1,19 @@
 package com.pr.herald.models;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//@Entity
-//@Table(name = "T_H_Devices")
-@Document(collection = "T_H_Devices")
+
+@Document(collection = "devices")
 public class Devices {
 	
 	private String deviceToken;
 	private Location location;
 	private String userMailId;// @Id of users table
-	private List<String> favCategories; // Favorite Categories
+	private Set<String> favCategories = new HashSet(); // Favorite Categories
 	
 	private Date createdDate;
 	private Date updatedDate;
@@ -42,10 +42,10 @@ public class Devices {
 		this.userMailId = userMailId;
 	}
 	
-	public List<String> getFavCategories() {
+	public Set<String> getFavCategories() {
 		return favCategories;
 	}
-	public void setFavCategories(List<String> favCategories) {
+	public void setFavCategories(Set<String> favCategories) {
 		this.favCategories = favCategories;
 	}
 	

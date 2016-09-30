@@ -13,7 +13,8 @@ import io.swagger.annotations.ApiModel;
 public class EventResponseDto 
 {
 	private String id;
-	private Location location;
+	private Double lng;
+	private Double lat;
 	private String header;
 	private String description;
 	private String status;
@@ -26,11 +27,18 @@ public class EventResponseDto
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Location getLocation() {
-		return location;
+	
+	public Double getLng() {
+		return lng;
 	}
-	public void setLocation(Location location) {
-		this.location = location;
+	public void setLng(Double lng) {
+		this.lng = lng;
+	}
+	public Double getLat() {
+		return lat;
+	}
+	public void setLat(Double lat) {
+		this.lat = lat;
 	}
 	public String getHeader() {
 		return header;
@@ -68,7 +76,8 @@ public class EventResponseDto
 		this.setId(e.getId());
 		this.setHeader(e.getHeader());
 		this.setDescription(e.getDescription());
-		this.setLocation(e.getLocation());
+		this.setLng(e.getLocation().getCoordinates()[0]);
+		this.setLat(e.getLocation().getCoordinates()[1]);
 		this.setLikes(e.getLikes());
 		this.setDislikes(e.getDislikes());
 		this.setStatus(e.getStatus());

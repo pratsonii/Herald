@@ -6,10 +6,7 @@ import java.util.Date;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-//@Entity
-//@Component
-//@Table(name = "T_H_Categories")
-@Document(collection = "T_H_Categories")
+@Document(collection = "categories")
 public class Categories {
 	
 	private String categoryName;

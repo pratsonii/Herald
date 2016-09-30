@@ -5,10 +5,7 @@ import java.util.Date;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-//@Entity
-//@Component
-//@Table(name = "T_H_User")
-@Document(collection = "T_H_User")
+@Document(collection = "user")
 public class User {
 	
 	private String name;

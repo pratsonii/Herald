@@ -10,8 +10,17 @@ public class Constants
 	public static final String registerSuccess = "Registered successfully";
 	public static final String updatSuccess = "Updated successfully";
 	public static final String noData = "No data!";
+	public static final String trueValue = "Y";
+	public static final String falseValue = "N";
+	public static final String defaultData = "Default Data";
 
 	public static class EventStatus
+	{
+		public static final String active = "Active";
+		public static final String inActive = "In Active";
+	}
+
+	public static class PlanStatus
 	{
 		public static final String active = "Active";
 		public static final String inActive = "In Active";

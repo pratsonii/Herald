@@ -17,8 +17,7 @@ public class DeviceRequestDto
 	private Double lng;
 	private Double lat;
 	private String userMailId;// @Id of users table
-	private List<String> favCategories;
-	private String category;
+	private String favCategories;
 	private Long distance;
 	
 	@ApiModelProperty
@@ -53,19 +52,11 @@ public class DeviceRequestDto
 		this.userMailId = userMailId;
 	}
 	
-	@ApiModelProperty
-	public List<String> getFavCategories() {
+	public String getCategory() {
 		return favCategories;
 	}
-	public void setFavCategories(List<String> favCategories) {
+	public void setCategory(String favCategories) {
 		this.favCategories = favCategories;
-	}
-	
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
 	}
 	
 	public Long getDistance() {
@@ -85,7 +76,6 @@ public class DeviceRequestDto
 		d.setDeviceToken(deviceToken);
 		d.setLocation( new Location(LocationType.point, new Double[]{lng,lat}) );		
 		d.setUserMailId(userMailId);
-		d.setFavCategories(favCategories);
 		d.setUpdatedDate(new Date());
 		
 		return d;

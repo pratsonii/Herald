@@ -29,4 +29,21 @@ public class DeviceController
 		serv.upsertDevice(dto.convertToDto(null));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/favorite/add", method = RequestMethod.POST)
+	@ApiOperation(value = "Update Device Info")
+	public ResponseEntity addFavorite(@RequestBody DeviceRequestDto dto)	
+	{
+		serv.addFavorite(dto);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	
+	@RequestMapping(value = "/favorite/remove", method = RequestMethod.POST)
+	@ApiOperation(value = "Update Device Info")
+	public ResponseEntity removeFavorite(@RequestBody DeviceRequestDto dto)	
+	{
+		serv.removeFavorite(dto);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 }

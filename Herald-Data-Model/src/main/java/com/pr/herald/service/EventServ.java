@@ -2,9 +2,11 @@ package com.pr.herald.service;
 
 import java.util.List;
 
+import com.pr.herald.dto.AppStartResponseDto;
 import com.pr.herald.dto.DeviceRequestDto;
 import com.pr.herald.dto.EventReactionDto;
 import com.pr.herald.dto.EventRequestDto;
+import com.pr.herald.models.Devices;
 import com.pr.herald.models.Events;
 
 public interface EventServ 
@@ -25,4 +27,6 @@ public interface EventServ
 	List<Events> upgradeToFeatured();
 	
 	List<Events> deActivateDislikedEvents() ;
+	
+	AppStartResponseDto startUpEvent(Devices d);
 }

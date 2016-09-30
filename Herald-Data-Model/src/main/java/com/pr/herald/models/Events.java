@@ -7,7 +7,7 @@ import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "T_H_Events")
+@Document(collection = "events")
 public class Events {
 
 	private String id;
