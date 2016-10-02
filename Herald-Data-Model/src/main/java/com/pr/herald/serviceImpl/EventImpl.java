@@ -125,8 +125,10 @@ public class EventImpl implements EventServ
 	@Override
 	public AppStartResponseDto startUpEvent(Devices d) 
 	{
-		List<Events> events = getNearByEvents(d.getLocation().getCoordinates()[0], 
-											  d.getLocation().getCoordinates()[1], 
+		List<Events> events = getNearByEvents(d.getLocation().getX(), 
+											  d.getLocation().getY(), 
+//											  d.getLocation().getCoordinates()[0], 
+//											  d.getLocation().getCoordinates()[1], 
 											  EventCategories.featured, 
 											  Long.valueOf(50));
 		List<EventResponseDto> eventList = new EventResponseDto().convetToDto(events);

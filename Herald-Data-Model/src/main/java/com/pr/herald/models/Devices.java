@@ -4,14 +4,20 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.data.geo.Point;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 
 
 @Document(collection = "devices")
 public class Devices {
 	
 	private String deviceToken;
-	private Location location;
+	
+	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
+	private Point location;
 	private String userMailId;// @Id of users table
 	private Set<String> favCategories = new HashSet(); // Favorite Categories
 	
@@ -28,10 +34,10 @@ public class Devices {
 		this.deviceToken = deviceToken;
 	}
 	
-	public Location getLocation() {
+	public Point getLocation() {
 		return location;
 	}
-	public void setLocation(Location location) {
+	public void setLocation(Point location) {
 		this.location = location;
 	}
 	

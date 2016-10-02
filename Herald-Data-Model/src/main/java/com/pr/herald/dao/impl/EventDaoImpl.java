@@ -17,6 +17,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 //import org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
@@ -112,7 +114,17 @@ public class EventDaoImpl
 		
 	}
 	
-	
+	public List<Events> searchEvents(String searchString)
+	{
+		TextCriteria criteria = TextCriteria.forDefaultLanguage()
+				  .matchingAny(searchString);
+
+				Query query = TextQuery.queryText(criteria)
+				  .sortByScore();
+//				  .with(new PageRequest(0, 5));
+
+				return template.find(query, Events.class);
+	}
 	
 //	db.getCollection('T_H_Events').aggregate([
 //	                                          { "$project": { "diff" : { $add:["$createdDate", {$multiply:["$life", 1000 * 60 * 60 * 24]}]}}},

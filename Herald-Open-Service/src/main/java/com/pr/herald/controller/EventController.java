@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.pr.herald.base.BaseException;
 import com.pr.herald.base.RespEntity;
 import com.pr.herald.contants.Constants;
 import com.pr.herald.dto.EventReactionDto;
@@ -39,30 +38,23 @@ public class EventController
 	@Autowired
 	RestTemplate rt;
 	
-	@ApiOperation("add event")
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseEntity addEvent(@RequestBody EventRequestDto dto) throws BaseException
+	@ApiOperation("update event Reaction")
+	@RequestMapping(value = "/updateReaction", method = RequestMethod.PUT)
+	public ResponseEntity updateEventReaction(@RequestBody EventReactionDto dto)
 	{
-		dto.checkMandatoryFields();
-		Events e = serv.addEvent(dto.convertToModel(null));
-		rt.postForObject(notifierAddress, e.getId(), ResponseEntity.class);
+		serv.updateReaction(dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@ApiOperation("update event")
-	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public ResponseEntity updateEvent(@RequestBody EventRequestDto dto)
-	{
-		serv.updateEvent(dto);
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-	
-	@ApiOperation("Get all my events")
-	@RequestMapping(value = "/myEvents", method = RequestMethod.GET)
-	public ResponseEntity<RespEntity<List<EventResponseDto>>> getMyEvents(@RequestParam String mailId )
+	@ApiOperation("Get near by events")
+	@RequestMapping(value = "/nearEvents", method = RequestMethod.GET)
+	public ResponseEntity<RespEntity<List<EventResponseDto>>> getNearByEvents(@RequestParam Double lng,
+																			  @RequestParam Double lat, 
+																			  @RequestParam String category, 
+																			  @RequestParam Long distance )
 	{
 		EventResponseDto e = new EventResponseDto();
-		List<EventResponseDto> result = e.convetToDto((serv.getUserEvents(mailId)));
+		List<EventResponseDto> result = e.convetToDto((serv.getNearByEvents(lng, lat, category, distance)));
 		RespEntity<List<EventResponseDto>> resp = new RespEntity<List<EventResponseDto>>(result, Constants.retriveSuccess);
 		
 		return new ResponseEntity<RespEntity<List<EventResponseDto>>>(resp, HttpStatus.OK);

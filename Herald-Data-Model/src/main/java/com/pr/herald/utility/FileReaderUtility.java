@@ -52,9 +52,8 @@ public class FileReaderUtility
 		Scanner scanner = new Scanner(file).useDelimiter(delimiter);
 
 		while(scanner.hasNext()) 
-		{			// Get statement 
+		{
 			String s = scanner.next();
-//			log.info("Statement: " +s);
 			scannedStrings.add(s);
 		}
 

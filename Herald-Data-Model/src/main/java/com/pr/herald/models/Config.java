@@ -23,6 +23,4 @@ public class Config
 	public void setDefaultDataFlag(String defaultDataFlag) {
 		this.defaultDataFlag = defaultDataFlag;
 	}
-	
-	
 }

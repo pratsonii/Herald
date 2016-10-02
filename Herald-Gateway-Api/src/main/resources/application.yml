@@ -8,3 +8,6 @@ zuul:
     user:
       path: /userApp/**
       url: http://localhost:8090
+    open:
+      path: /openApp/**
+      url: http://localhost:8096

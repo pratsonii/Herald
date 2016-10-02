@@ -13,6 +13,9 @@ public class Constants
 	public static final String trueValue = "Y";
 	public static final String falseValue = "N";
 	public static final String defaultData = "Default Data";
+	public static final String invalidEmail = "Invalid mail address";
+	public static final String invalidUserPass = "Invalid Username/Password";
+	public static final String cantEmpty = "Cannot be empty!";
 
 	public static class EventStatus
 	{
@@ -40,5 +43,11 @@ public class Constants
 	public static class LocationType
 	{
 		public static final String point = "Point";
+	}
+	
+	public static class UserRoles
+	{
+		public static final String user = "ROLE_USER";
+		public static final String admin = "ROLE_ADMIN";
 	}
 }

@@ -1,20 +1,32 @@
 package com.pr.herald.models;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.pr.herald.base.BaseException;
+import com.pr.herald.contants.Constants;
 
 @Document(collection = "events")
 public class Events {
 
 	private String id;
 	private String deviceToken;
+	
+	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
 	private Location location;
-	private String header;
-	private String description;
+	
+	@TextIndexed private String header;
+	@TextIndexed private String description;
 	private String userMailId;// @Id of users table
 	private Long notifiedTo;
 	private Set<String> categoryName = new HashSet<>();;

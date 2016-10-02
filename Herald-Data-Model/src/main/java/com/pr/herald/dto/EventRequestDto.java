@@ -1,14 +1,25 @@
 package com.pr.herald.dto;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.pr.herald.base.BaseException;
+import com.pr.herald.contants.Constants;
 import com.pr.herald.contants.Constants.LocationType;
 import com.pr.herald.models.Events;
 import com.pr.herald.models.Location;
+import com.pr.herald.utility.CommonUtility;
 
 import io.swagger.annotations.ApiModel;
 
 @ApiModel
 public class EventRequestDto 
-{
+{	@Autowired
+	CommonUtility util;
+
 	private String id;
 	private String deviceToken;
 	private Double lng;
@@ -117,5 +128,12 @@ public class EventRequestDto
 		e.setPlanId(planId);
 		
 		return e;
+	}
+
+	
+	public void checkMandatoryFields() throws BaseException
+	{		
+		List<String> fields = Arrays.asList(this.getPlanId(), this.getCategoryName(), this.getHeader(), this.getDescription());
+		util.checkEmpty(fields);
 	}
 }

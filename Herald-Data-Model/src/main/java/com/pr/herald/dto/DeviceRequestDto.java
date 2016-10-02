@@ -3,6 +3,9 @@ package com.pr.herald.dto;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.geo.Point;
+
+import com.mongodb.client.model.geojson.Position;
 import com.pr.herald.contants.Constants.LocationType;
 import com.pr.herald.models.Devices;
 import com.pr.herald.models.Location;
@@ -74,7 +77,8 @@ public class DeviceRequestDto
 		}
 		
 		d.setDeviceToken(deviceToken);
-		d.setLocation( new Location(LocationType.point, new Double[]{lng,lat}) );		
+		d.setLocation( new Point(lng, lat) );		
+//		d.setLocation( new Location(LocationType.point, new Double[]{lng,lat}) );		
 		d.setUserMailId(userMailId);
 		d.setUpdatedDate(new Date());
 		
