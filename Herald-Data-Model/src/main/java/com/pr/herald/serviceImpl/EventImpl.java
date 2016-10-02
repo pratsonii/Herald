@@ -143,4 +143,10 @@ public class EventImpl implements EventServ
 		return dto;
 	}
 
+	@Override
+	public List<Events> searchNearByEvents(Double lng, Double lat, String searchString, Long distance) 
+	{
+		return daoImpl.searchEvents(searchString, lng, lat, distance, EventStatus.active);
+	}
+
 }

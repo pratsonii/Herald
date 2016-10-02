@@ -46,7 +46,7 @@ public class EventController
 		dto.checkMandatoryFields();
 		Events e = serv.addEvent(dto.convertToModel(null));
 		rt.postForObject(notifierAddress, e.getId(), ResponseEntity.class);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity(new RespEntity(null, Constants.eventSuccess), HttpStatus.OK);
 	}
 	
 	@ApiOperation("update event")
@@ -54,7 +54,7 @@ public class EventController
 	public ResponseEntity updateEvent(@RequestBody EventRequestDto dto)
 	{
 		serv.updateEvent(dto);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity(new RespEntity(null, Constants.updatSuccess), HttpStatus.OK);
 	}
 	
 	@ApiOperation("Get all my events")

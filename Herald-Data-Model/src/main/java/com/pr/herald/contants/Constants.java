@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class Constants 
 {
 	public static final String addSuccess = "Added successfully";
+	public static final String eventSuccess = "Event Created successfully";
 	public static final String retriveSuccess = "Retirved successfully";
 	public static final String registerSuccess = "Registered successfully";
 	public static final String updatSuccess = "Updated successfully";

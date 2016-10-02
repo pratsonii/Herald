@@ -114,16 +114,20 @@ public class EventDaoImpl
 		
 	}
 	
-	public List<Events> searchEvents(String searchString)
+	public List<Events> searchEvents(String searchString,Double lng, Double lat, Long distance,  String status)
 	{
-		TextCriteria criteria = TextCriteria.forDefaultLanguage()
-				  .matchingAny(searchString);
+		Point point = new Point(lng, lat);
+		Distance d = new Distance(distance, Metrics.KILOMETERS);
+		Circle c = new Circle(point, d);
+		
+		TextCriteria criteria = TextCriteria.forDefaultLanguage().matchingAny(searchString);
 
-				Query query = TextQuery.queryText(criteria)
-				  .sortByScore();
-//				  .with(new PageRequest(0, 5));
+		Query query = TextQuery.queryText(criteria).sortByScore()
+							   .addCriteria(Criteria.where("location").withinSphere(c))
+							   .addCriteria(Criteria.where("status").is(status));
+		//				  	   .with(new PageRequest(0, 5));
 
-				return template.find(query, Events.class);
+		return template.find(query, Events.class);
 	}
 	
 //	db.getCollection('T_H_Events').aggregate([

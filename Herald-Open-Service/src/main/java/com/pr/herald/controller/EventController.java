@@ -59,4 +59,18 @@ public class EventController
 		
 		return new ResponseEntity<RespEntity<List<EventResponseDto>>>(resp, HttpStatus.OK);
 	}
+	
+	@ApiOperation("Search near by events")
+	@RequestMapping(value = "/searchEvents", method = RequestMethod.GET)
+	public ResponseEntity<RespEntity<List<EventResponseDto>>> searchByEvents(@RequestParam Double lng,
+																			  @RequestParam Double lat, 
+																			  @RequestParam String searchString, 
+																			  @RequestParam Long distance )
+	{
+		EventResponseDto e = new EventResponseDto();
+		List<EventResponseDto> result = e.convetToDto((serv.searchNearByEvents(lng, lat, searchString, distance)));
+		RespEntity<List<EventResponseDto>> resp = new RespEntity<List<EventResponseDto>>(result, Constants.retriveSuccess);
+		
+		return new ResponseEntity<RespEntity<List<EventResponseDto>>>(resp, HttpStatus.OK);
+	}
 }

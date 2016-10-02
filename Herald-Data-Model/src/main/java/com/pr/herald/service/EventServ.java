@@ -22,6 +22,11 @@ public interface EventServ
 								 String category, 
 								 Long distance);
 	
+	List<Events> searchNearByEvents(Double lng,
+								 Double lat, 
+								 String searchString, 
+								 Long distance);
+	
 	List<Events> getUserEvents(String mailId);
 	
 	List<Events> upgradeToFeatured();

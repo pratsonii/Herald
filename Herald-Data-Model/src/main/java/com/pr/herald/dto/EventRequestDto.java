@@ -17,8 +17,7 @@ import io.swagger.annotations.ApiModel;
 
 @ApiModel
 public class EventRequestDto 
-{	@Autowired
-	CommonUtility util;
+{
 
 	private String id;
 	private String deviceToken;
@@ -134,6 +133,6 @@ public class EventRequestDto
 	public void checkMandatoryFields() throws BaseException
 	{		
 		List<String> fields = Arrays.asList(this.getPlanId(), this.getCategoryName(), this.getHeader(), this.getDescription());
-		util.checkEmpty(fields);
+		new CommonUtility().checkEmpty(fields);
 	}
 }
