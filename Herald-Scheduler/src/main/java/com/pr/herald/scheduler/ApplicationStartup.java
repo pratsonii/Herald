@@ -1,5 +1,6 @@
 package com.pr.herald.scheduler;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationStartup implements ApplicationListener<ApplicationReadyEvent> 
 {
+	Logger log = Logger.getLogger(this.getClass());
 	
 	@Autowired
 	EventFinishTask eventFinishTask;
@@ -18,8 +20,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 	@Override
 	public void onApplicationEvent(final ApplicationReadyEvent event) 
 	{
-		System.out.println("On App Start");
-//		task.startTask(task);
+		log.info("---- On App Start ----");
 		
 		eventFinishTask.startTask(eventFinishTask);
 		reactionTask.startTask(reactionTask);

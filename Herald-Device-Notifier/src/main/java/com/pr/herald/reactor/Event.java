@@ -2,5 +2,5 @@ package com.pr.herald.reactor;
 
 public enum Event 
 {
-	deviceNotification
+	DEVICE_NOTIFICATION
 }

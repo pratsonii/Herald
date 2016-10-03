@@ -1,4 +1,4 @@
-package com.pr.herald.service.Impl;
+package com.pr.herald.service.impl;
 
 import java.util.List;
 

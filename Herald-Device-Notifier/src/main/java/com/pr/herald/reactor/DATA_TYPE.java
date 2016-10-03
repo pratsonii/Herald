@@ -2,5 +2,5 @@ package com.pr.herald.reactor;
 
 public enum DATA_TYPE 
 {
-	eventId
+	EVENT_ID
 }

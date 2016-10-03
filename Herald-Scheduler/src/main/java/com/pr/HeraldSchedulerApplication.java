@@ -11,7 +11,5 @@ public class HeraldSchedulerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HeraldSchedulerApplication.class, args);
-//		EventFinishTask.startTask();
-//		ReactionTask.startTask();
 	}
 }

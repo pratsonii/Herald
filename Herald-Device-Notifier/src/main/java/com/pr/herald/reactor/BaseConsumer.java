@@ -8,7 +8,6 @@ import com.pr.herald.service.NotificationServ;
 import reactor.core.Reactor;
 import reactor.event.Event;
 import reactor.spring.annotation.Consumer;
-import reactor.spring.annotation.ReplyTo;
 import reactor.spring.annotation.Selector;
 
 @Consumer
@@ -22,18 +21,11 @@ public class BaseConsumer
 	@Autowired
 	NotificationServ notificationServ;
 
-	@Selector("deviceNotification")
-	public void handleTestTopic(Event<NotificationData> evt) 
+	@Selector("DEVICE_NOTIFICATION")
+	public void handleDeviceNotification(Event<NotificationData> evt) 
 	{
-		try {
-			Thread.sleep(1000*10);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		log.info("---- in Device Notification consumer----");
-		String eventId =(String) evt.getData().getData(DATA_TYPE.eventId);
+		String eventId =(String) evt.getData().getData(DATA_TYPE.EVENT_ID);
 		log.info("Event Id: "+ eventId);
 		notificationServ.notifyDevices(eventId);
 	}

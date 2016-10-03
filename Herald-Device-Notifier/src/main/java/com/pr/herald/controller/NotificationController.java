@@ -28,9 +28,9 @@ public class NotificationController
 	public ResponseEntity sendNotification(@RequestBody String eventId)
 	{
 		Map<String,Object> data = new HashMap<>();
-		data.put(DATA_TYPE.eventId.name(), eventId);
+		data.put(DATA_TYPE.EVENT_ID.name(), eventId);
 		NotificationData nData = new NotificationData();
-		nData.setEvent(Event.deviceNotification);
+		nData.setEvent(Event.DEVICE_NOTIFICATION);
 		nData.setData(data);
 		publisher.fireEvent(nData);
 		return new ResponseEntity<>(HttpStatus.OK);

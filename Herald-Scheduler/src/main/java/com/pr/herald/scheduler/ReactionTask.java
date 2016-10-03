@@ -18,7 +18,7 @@ public class ReactionTask extends TimerTask
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
-	private final static long ONCE_PER_TWO_HOUR = 1000*60*60*2;
+	private static final long ONCE_PER_TWO_HOUR = 1000*60*60*2;
 
 	@Override
 	public void run() 
@@ -27,7 +27,6 @@ public class ReactionTask extends TimerTask
 		try {
 			Thread.sleep(ONCE_PER_TWO_HOUR);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -38,7 +37,7 @@ public class ReactionTask extends TimerTask
 
 	public void startTask(ReactionTask task)
 	{
-		System.out.println("--- Start Reaction Scheduler ---");
+		log.info("--- Start Reaction Execution ---");
         Timer timer = new Timer();  
         timer.schedule(task, new Date(), ONCE_PER_TWO_HOUR);// for your case u need to give 1000*60*60*24
     }
