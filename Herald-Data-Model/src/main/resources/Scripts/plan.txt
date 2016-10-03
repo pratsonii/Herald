@@ -1,7 +1,9 @@
 { 
     "name" : "Bronze", 
     "life" : 7, 
+    "relive" : 7, 
     "price" : 0, 
     "impect" : 50,
     "status" : "Active"
+    
 }

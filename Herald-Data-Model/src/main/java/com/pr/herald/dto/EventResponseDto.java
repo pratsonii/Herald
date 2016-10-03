@@ -1,11 +1,11 @@
 package com.pr.herald.dto;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.pr.herald.models.Events;
-import com.pr.herald.models.Location;
 
 import io.swagger.annotations.ApiModel;
 
@@ -17,9 +17,12 @@ public class EventResponseDto
 	private Double lat;
 	private String header;
 	private String description;
+	private String category;
 	private String status;
+	private String planId;
 	private Long dislikes = 0L;
 	private Long likes = 0L;
+	private PlanResponseDto planDto;
 	
 	public String getId() {
 		return id;
@@ -71,6 +74,28 @@ public class EventResponseDto
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public PlanResponseDto getPlanDto() {
+		return planDto;
+	}
+	public void setPlanDto(PlanResponseDto planDto) {
+		this.planDto = planDto;
+	}
+	
+	
+	public String getPlanId() {
+		return planId;
+	}
+	public void setPlanId(String planId) {
+		this.planId = planId;
+	}
+	
 	public EventResponseDto convetToDto(Events e)
 	{
 		this.setId(e.getId());
@@ -81,12 +106,13 @@ public class EventResponseDto
 		this.setLikes(e.getLikes());
 		this.setDislikes(e.getDislikes());
 		this.setStatus(e.getStatus());
-		
+		this.setPlanId(e.getPlanId());
+		this.setCategory(StringUtils.join(e.getCategoryName(), ','));
 		return this;
 	}
 	
 	public List<EventResponseDto> convetToDto(List<Events> events)
 	{
-		return events.stream().map( e -> convetToDto(e)).collect(Collectors.toList());
+		return events.stream().map( e -> new EventResponseDto().convetToDto(e)).collect(Collectors.toList());
 	}
 }

@@ -1,4 +1,4 @@
-package com.pr.herald.serviceImpl;
+package com.pr.herald.serviceimpl;
 
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,8 +85,8 @@ public class StartUpImpl implements StartUpServ
 	{
 		for(T m : models)
 		{
-			Method setCreatedDate = m.getClass().getMethod("setCreatedDate", new Date().getClass());
-			Method setUpdatedDate = m.getClass().getMethod("setUpdatedDate", new Date().getClass());
+			Method setCreatedDate = m.getClass().getMethod("setCreatedDate", Date.class);
+			Method setUpdatedDate = m.getClass().getMethod("setUpdatedDate", Date.class);
 			
 			setCreatedDate.invoke(m, new Date());
 			setUpdatedDate.invoke(m, new Date());
@@ -105,7 +106,7 @@ public class StartUpImpl implements StartUpServ
 			configDao.save(c);
 		}
 		
-		return c.getDefaultDataFlag() == Constants.trueValue ? true:false;
+		return StringUtils.equals(c.getDefaultDataFlag(), Constants.trueValue);
 	}
 	
 	private void setConfigFalse(String name)

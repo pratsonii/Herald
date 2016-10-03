@@ -34,9 +34,9 @@ public class PlanController
 		List<Plans> plans = planServ.findAll();
 		PlanResponseDto dto = new PlanResponseDto();
 		List<PlanResponseDto> dtos = dto.convetToDto(plans);
-		RespEntity<List<PlanResponseDto>> resp = new RespEntity<List<PlanResponseDto>>(dtos, Constants.retriveSuccess);
+		RespEntity<List<PlanResponseDto>> resp = new RespEntity(dtos, Constants.retriveSuccess);
 		
-		return new ResponseEntity<RespEntity<List<PlanResponseDto>>>(resp, HttpStatus.OK);
+		return new ResponseEntity(resp, HttpStatus.OK);
 		
 	}
 }

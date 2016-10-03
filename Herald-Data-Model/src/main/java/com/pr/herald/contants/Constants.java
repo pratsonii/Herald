@@ -5,18 +5,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class Constants 
 {
-	public static final String addSuccess = "Added successfully";
-	public static final String eventSuccess = "Event Created successfully";
-	public static final String retriveSuccess = "Retirved successfully";
-	public static final String registerSuccess = "Registered successfully";
-	public static final String updatSuccess = "Updated successfully";
+	public static final String addSuccess = "Added Successfully";
+	public static final String eventSuccess = "Event Created Successfully";
+	public static final String retriveSuccess = "Retirved Successfully";
+	public static final String registerSuccess = "Registered Successfully";
+	public static final String updatSuccess = "Updated Successfully";
+	public static final String eventActivated = "Event Activated Successfully!";
 	public static final String noData = "No data!";
 	public static final String trueValue = "Y";
 	public static final String falseValue = "N";
 	public static final String defaultData = "Default Data";
-	public static final String invalidEmail = "Invalid mail address";
+	public static final String invalidEmail = "Invalid Mail Address";
 	public static final String invalidUserPass = "Invalid Username/Password";
-	public static final String cantEmpty = "Cannot be empty!";
+	public static final String cantEmpty = "Cannot Be Empty!";
 
 	public static class EventStatus
 	{

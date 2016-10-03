@@ -2,16 +2,17 @@ package com.pr.herald.service;
 
 import java.util.List;
 
+import com.pr.herald.base.BaseException;
 import com.pr.herald.dto.AppStartResponseDto;
-import com.pr.herald.dto.DeviceRequestDto;
 import com.pr.herald.dto.EventReactionDto;
 import com.pr.herald.dto.EventRequestDto;
+import com.pr.herald.dto.EventResponseDto;
 import com.pr.herald.models.Devices;
 import com.pr.herald.models.Events;
 
 public interface EventServ 
 {
-	Events addEvent(Events e);
+	Events addEvent(Events e) throws BaseException;
 	
 	void updateEvent(EventRequestDto dto);
 	
@@ -29,9 +30,13 @@ public interface EventServ
 	
 	List<Events> getUserEvents(String mailId);
 	
-	List<Events> upgradeToFeatured();
+	void upgradeToFeatured();
 	
-	List<Events> deActivateDislikedEvents() ;
+	List<EventResponseDto> addPlanToDto(List<EventResponseDto> dto);
+	
+	void deActivateDislikedEvents() ;
 	
 	AppStartResponseDto startUpEvent(Devices d);
+
+	void reactivateEvent(String eventId) throws BaseException;
 }

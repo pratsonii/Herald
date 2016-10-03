@@ -1,20 +1,14 @@
 package com.pr.herald.models;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.pr.herald.base.BaseException;
-import com.pr.herald.contants.Constants;
 
 @Document(collection = "events")
 public class Events {
@@ -29,7 +23,7 @@ public class Events {
 	@TextIndexed private String description;
 	private String userMailId;// @Id of users table
 	private Long notifiedTo;
-	private Set<String> categoryName = new HashSet<>();;
+	private Set<String> categoryName = new HashSet<>();
 	private String status;
 	private String city;
 	private String state;

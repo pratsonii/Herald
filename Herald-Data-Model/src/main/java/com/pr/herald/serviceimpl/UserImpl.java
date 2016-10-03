@@ -1,8 +1,9 @@
-package com.pr.herald.serviceImpl;
+package com.pr.herald.serviceimpl;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,10 @@ import com.pr.herald.service.UserServ;
 
 @Service
 @Transactional
-public class UserImpl implements UserServ {
-
+public class UserImpl implements UserServ 
+{
+	Logger log  = Logger.getLogger(this.getClass());
+	
 	@Autowired
 	UserDao dao;
 	
@@ -62,6 +65,7 @@ public class UserImpl implements UserServ {
         }
         catch(DuplicateKeyException e)
         {
+        	log.info("---"+e.getMessage()+"---");
         	throw new BaseException("Email Address  '"+user.getMailId()+"' is already registerd with us!");
         }
 		

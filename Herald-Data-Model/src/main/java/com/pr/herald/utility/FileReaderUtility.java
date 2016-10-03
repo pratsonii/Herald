@@ -16,9 +16,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class FileReaderUtility 
 {
-	private final String textExt = ".txt";
-	private final String semicolon = ";";
-	private final String classPath = "Scripts/";
+	private static final String textExt = ".txt";
+	private static final String semicolon = ";";
+	private static final String classPath = "Scripts/";
 	
 	Logger log = Logger.getLogger(this.getClass());
 	
@@ -39,8 +39,9 @@ public class FileReaderUtility
 			fileLocation = classPath + fileName + fileExtension;
 			log.info("file location:" + fileLocation);
 			filePath = URLDecoder.decode(classLoader.getResource(fileLocation).getFile(),"UTF-8");
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) 
+		{
+			log.info("---"+e.getMessage()+"---");
 		}
 		log.info("decoder path:" + filePath);
 		return new File(filePath);
@@ -74,8 +75,7 @@ public class FileReaderUtility
 				objList.add(mapper.readValue(s, cls));
 			} 
 			catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.info("---"+e.getMessage()+"---");
 			}
 		}
 		

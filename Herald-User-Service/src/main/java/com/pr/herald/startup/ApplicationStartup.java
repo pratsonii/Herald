@@ -1,4 +1,4 @@
-package com.pr.herald.startUp;
+package com.pr.herald.startup;
 
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
@@ -28,8 +28,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 			startUp.loadInitialData();
 		} catch (FileNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.info(e.getMessage());
 		}
 		
 	}

@@ -2,9 +2,7 @@ package com.pr.herald.models;
 
 import java.util.Date;
 
-
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "categories")
 public class Categories {
@@ -16,6 +14,7 @@ public class Categories {
 	private Date updatedDate;
 	private String createdBy;
 	private String updatedBy;
+	private Integer priority;
 	
 
 	@org.springframework.data.annotation.Id
@@ -59,6 +58,13 @@ public class Categories {
 	}
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
+	}
+	
+	public Integer getPriority() {
+		return priority;
+	}
+	public void setPriority(Integer priority) {
+		this.priority = priority;
 	}
 		
 	

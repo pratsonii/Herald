@@ -54,10 +54,10 @@ public class EventController
 																			  @RequestParam Long distance )
 	{
 		EventResponseDto e = new EventResponseDto();
-		List<EventResponseDto> result = e.convetToDto((serv.getNearByEvents(lng, lat, category, distance)));
+		List<EventResponseDto> result = e.convetToDto(serv.getNearByEvents(lng, lat, category, distance));
 		RespEntity<List<EventResponseDto>> resp = new RespEntity<List<EventResponseDto>>(result, Constants.retriveSuccess);
 		
-		return new ResponseEntity<RespEntity<List<EventResponseDto>>>(resp, HttpStatus.OK);
+		return new ResponseEntity(resp, HttpStatus.OK);
 	}
 	
 	@ApiOperation("Search near by events")
@@ -68,9 +68,9 @@ public class EventController
 																			  @RequestParam Long distance )
 	{
 		EventResponseDto e = new EventResponseDto();
-		List<EventResponseDto> result = e.convetToDto((serv.searchNearByEvents(lng, lat, searchString, distance)));
-		RespEntity<List<EventResponseDto>> resp = new RespEntity<List<EventResponseDto>>(result, Constants.retriveSuccess);
+		List<EventResponseDto> result = e.convetToDto(serv.searchNearByEvents(lng, lat, searchString, distance));
+		RespEntity<List<EventResponseDto>> resp = new RespEntity(result, Constants.retriveSuccess);
 		
-		return new ResponseEntity<RespEntity<List<EventResponseDto>>>(resp, HttpStatus.OK);
+		return new ResponseEntity(resp, HttpStatus.OK);
 	}
 }

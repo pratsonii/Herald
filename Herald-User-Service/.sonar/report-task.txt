@@ -1,0 +1,5 @@
+projectKey=org.sonarqube:herald-user
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/org.sonarqube:herald-user
+ceTaskId=AVeLj11alOTLN5Z43ivU
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVeLj11alOTLN5Z43ivU

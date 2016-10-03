@@ -30,14 +30,6 @@ public class GlobalExceptionHandler
 	{
 		log.info("--- BaseException Occured:: URL="+request.getRequestURL());
 		return new ResponseEntity(new RespEntity(null, ex.getMessage()), HttpStatus.EXPECTATION_FAILED);
-	}
-//
-//	@ExceptionHandler(BadCredentialsException.class)
-//	public ResponseEntity handleBadCredentialsException(HttpServletRequest request, Exception ex)
-//	{
-//		log.info("--- BadCredentialsException Occured:: URL="+request.getRequestURL());
-//		log.info(ex.getMessage());
-//		return new ResponseEntity(new RespEntity(null, Constants.invalidUserPass), HttpStatus.EXPECTATION_FAILED);
-//	}
+	}	
 	
 }

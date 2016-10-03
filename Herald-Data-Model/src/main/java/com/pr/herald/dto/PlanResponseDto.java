@@ -3,7 +3,6 @@ package com.pr.herald.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.pr.herald.models.Events;
 import com.pr.herald.models.Plans;
 
 import io.swagger.annotations.ApiModel;

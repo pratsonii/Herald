@@ -3,11 +3,7 @@ package com.pr.herald.dto;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.pr.herald.base.BaseException;
-import com.pr.herald.contants.Constants;
 import com.pr.herald.contants.Constants.LocationType;
 import com.pr.herald.models.Events;
 import com.pr.herald.models.Location;

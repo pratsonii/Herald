@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
@@ -42,9 +41,8 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("${javatab.route.authentication}")
 @Api
-public class AuthenticationController {
-
-
+public class AuthenticationController 
+{
   @Value("${javatab.token.header}")
   private String tokenHeader;
 

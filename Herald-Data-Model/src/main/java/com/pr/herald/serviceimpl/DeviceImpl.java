@@ -1,4 +1,4 @@
-package com.pr.herald.serviceImpl;
+package com.pr.herald.serviceimpl;
 
 import java.util.Date;
 

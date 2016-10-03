@@ -41,8 +41,8 @@ public class StartUpController
 	{
 		Devices d = deviceServ.upsertDevice(dto.convertToDto(null));
 		AppStartResponseDto returnDto = eventServ.startUpEvent(d);
-		RespEntity<AppStartResponseDto> resp = new RespEntity<AppStartResponseDto>(returnDto, Constants.retriveSuccess);
-		return new ResponseEntity<RespEntity<AppStartResponseDto>>(resp, HttpStatus.OK);
+		RespEntity<AppStartResponseDto> resp = new RespEntity(returnDto, Constants.retriveSuccess);
+		return new ResponseEntity(resp, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "test", method = RequestMethod.POST)

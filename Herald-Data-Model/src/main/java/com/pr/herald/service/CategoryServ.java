@@ -10,4 +10,5 @@ public interface CategoryServ
 	void addCategory(Categories c) throws BaseException;
 	public void updateCategory(Categories c);
 	public List<Categories> findAllCategory();
+	List<Categories> findCategoryExceptFeatured();
 }

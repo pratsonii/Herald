@@ -1,10 +1,11 @@
-package com.pr.herald.serviceImpl;
+package com.pr.herald.serviceimpl;
 
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pr.herald.contants.Constants.PlanStatus;
 import com.pr.herald.dao.PlansDao;
@@ -12,6 +13,7 @@ import com.pr.herald.models.Plans;
 import com.pr.herald.service.PlanServ;
 
 @Service
+@Transactional
 public class PlanImpl implements PlanServ 
 {
 	@Autowired

@@ -1,5 +1,6 @@
-package com.pr.herald.serviceImpl;
+package com.pr.herald.serviceimpl;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pr.herald.base.BaseException;
 import com.pr.herald.contants.Constants.EventCategories;
 import com.pr.herald.contants.Constants.EventReaction;
 import com.pr.herald.contants.Constants.EventStatus;
@@ -17,13 +19,14 @@ import com.pr.herald.dao.PlansDao;
 import com.pr.herald.dao.impl.EventDaoImpl;
 import com.pr.herald.dto.AppStartResponseDto;
 import com.pr.herald.dto.CategoryResponseDto;
-import com.pr.herald.dto.DeviceRequestDto;
 import com.pr.herald.dto.EventReactionDto;
 import com.pr.herald.dto.EventRequestDto;
 import com.pr.herald.dto.EventResponseDto;
+import com.pr.herald.dto.PlanResponseDto;
 import com.pr.herald.models.Categories;
 import com.pr.herald.models.Devices;
 import com.pr.herald.models.Events;
+import com.pr.herald.models.Plans;
 import com.pr.herald.service.CategoryServ;
 import com.pr.herald.service.EventServ;
 
@@ -44,14 +47,26 @@ public class EventImpl implements EventServ
 	CategoryServ categoryServ;
 	
 	@Override
-	public Events addEvent(Events e) 
+	public Events addEvent(Events e) throws BaseException 
 	{	
+		eventChecks(e);
 		e.setCreatedDate(new Date());
 		e.setUpdatedDate(new Date());
 		e.setStatus(EventStatus.active);
 		e.setLife(planDao.findOne(e.getPlanId()).getLife());
 		
 		return dao.insert(e);
+	}
+	
+	private void eventChecks(Events e) throws BaseException
+	{
+		for(String c : e.getCategoryName())
+		{
+			if(StringUtils.equals(c, EventCategories.featured))
+				throw new BaseException("Event of category 'Featured' cant be created!");
+		}
+		
+			
 	}
 
 	@Override
@@ -63,6 +78,36 @@ public class EventImpl implements EventServ
 		e.setUpdatedDate(new Date());
 		
 		dao.save(e);
+	}
+
+	@Override
+	public void reactivateEvent(String eventId) throws BaseException 
+	{
+		Events e = dao.findOne(eventId);
+		if(StringUtils.equals(e.getStatus(), EventStatus.inActive))
+		{
+			Long relive = planDao.findOne(e.getPlanId()).getRelive();
+			Date reliveDate = java.sql.Date.valueOf( LocalDate.now().minusDays(relive) );
+			Date inactiveDate = e.getUpdatedDate();
+			int days = daysBetween(reliveDate, inactiveDate);
+			
+			if( days >= 0)
+			{
+				e.setCreatedDate(new Date());
+				e.setUpdatedDate(new Date());
+				e.setStatus(EventStatus.active);
+				dao.save(e);
+			}
+			else
+			{
+				days = days - (days*2);
+				throw new BaseException("Wait For "+days+" day(s) to reactivate! ");
+			}
+		}
+		else
+		{
+			throw new BaseException(" Event is Already Active!");
+		}
 	}
 
 	@Override
@@ -105,21 +150,17 @@ public class EventImpl implements EventServ
 	}
 
 	@Override
-	public List<Events> upgradeToFeatured() 
+	public void upgradeToFeatured() 
 	{
 		daoImpl.upgradeToFeatured();
-		
-		return null;
 	}
 	
 
 
 	@Override
-	public List<Events> deActivateDislikedEvents() 
+	public void deActivateDislikedEvents() 
 	{
 		daoImpl.deActivateDislikedEvents();
-		
-		return null;
 	}
 
 	@Override
@@ -131,6 +172,7 @@ public class EventImpl implements EventServ
 //											  d.getLocation().getCoordinates()[1], 
 											  EventCategories.featured, 
 											  Long.valueOf(50));
+		
 		List<EventResponseDto> eventList = new EventResponseDto().convetToDto(events);
 		AppStartResponseDto dto = new AppStartResponseDto();
 		dto.setEvents(eventList);
@@ -147,6 +189,22 @@ public class EventImpl implements EventServ
 	public List<Events> searchNearByEvents(Double lng, Double lat, String searchString, Long distance) 
 	{
 		return daoImpl.searchEvents(searchString, lng, lat, distance, EventStatus.active);
+	}
+
+	public static int daysBetween(Date d1, Date d2)
+	{
+		return (int)( (d1.getTime() - d2.getTime()) / (1000 * 60 * 60 * 24));
+	}
+
+	@Override
+	public List<EventResponseDto> addPlanToDto(List<EventResponseDto> dtos) 
+	{
+		for(EventResponseDto dto : dtos)
+		{
+			Plans p = planDao.findOne(dto.getPlanId());
+			dto.setPlanDto(new PlanResponseDto().convetToDto(p));
+		}
+		return dtos;
 	}
 
 }

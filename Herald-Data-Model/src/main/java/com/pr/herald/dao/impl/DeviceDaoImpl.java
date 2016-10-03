@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import com.mongodb.client.MongoDatabase;
 import com.pr.herald.models.Devices;
-import com.pr.herald.models.Events;
 
 @Component
 public class DeviceDaoImpl 

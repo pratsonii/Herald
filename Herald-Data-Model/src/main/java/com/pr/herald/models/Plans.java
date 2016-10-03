@@ -12,6 +12,7 @@ public class Plans
 	private String name;
 	private String status;
 	private Long life;
+	private Long relive;
 	private Double price;
 	private Long impect;
 
@@ -82,4 +83,11 @@ public class Plans
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public Long getRelive() {
+		return relive;
+	}
+	public void setRelive(Long relive) {
+		this.relive = relive;
+	}
+	
 }

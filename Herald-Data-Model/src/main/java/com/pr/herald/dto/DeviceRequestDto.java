@@ -1,14 +1,10 @@
 package com.pr.herald.dto;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.data.geo.Point;
 
-import com.mongodb.client.model.geojson.Position;
-import com.pr.herald.contants.Constants.LocationType;
 import com.pr.herald.models.Devices;
-import com.pr.herald.models.Location;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
