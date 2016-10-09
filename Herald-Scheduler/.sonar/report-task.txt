@@ -1,0 +1,5 @@
+projectKey=org.sonarqube:herald-scheduler
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/org.sonarqube:herald-scheduler
+ceTaskId=AVeLqT1YlOTLN5Z43iva
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVeLqT1YlOTLN5Z43iva

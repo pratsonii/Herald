@@ -22,7 +22,7 @@ public class EventResponseDto
 	private String planId;
 	private Long dislikes = 0L;
 	private Long likes = 0L;
-	private PlanResponseDto planDto;
+	private PlanResponseDto plan;
 	
 	public String getId() {
 		return id;
@@ -81,13 +81,13 @@ public class EventResponseDto
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public PlanResponseDto getPlanDto() {
-		return planDto;
-	}
-	public void setPlanDto(PlanResponseDto planDto) {
-		this.planDto = planDto;
-	}
 	
+	public PlanResponseDto getPlan() {
+		return plan;
+	}
+	public void setPlan(PlanResponseDto plan) {
+		this.plan = plan;
+	}
 	
 	public String getPlanId() {
 		return planId;

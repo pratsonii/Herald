@@ -43,7 +43,8 @@ public class EventController
 	public ResponseEntity updateEventReaction(@RequestBody EventReactionDto dto)
 	{
 		serv.updateReaction(dto);
-		return new ResponseEntity<>(HttpStatus.OK);
+		RespEntity resp = new RespEntity(null, Constants.retriveSuccess);
+		return new ResponseEntity<>(resp,HttpStatus.OK);
 	}
 	
 	@ApiOperation("Get near by events")

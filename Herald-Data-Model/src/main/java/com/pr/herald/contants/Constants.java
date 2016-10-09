@@ -11,6 +11,7 @@ public class Constants
 	public static final String registerSuccess = "Registered Successfully";
 	public static final String updatSuccess = "Updated Successfully";
 	public static final String eventActivated = "Event Activated Successfully!";
+	public static final String eventDeleted = "Event deleted Successfully!";
 	public static final String noData = "No data!";
 	public static final String trueValue = "Y";
 	public static final String falseValue = "N";

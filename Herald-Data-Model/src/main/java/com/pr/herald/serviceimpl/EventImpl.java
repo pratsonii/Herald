@@ -73,7 +73,7 @@ public class EventImpl implements EventServ
 	public void updateEvent(EventRequestDto dto) 
 	{
 		Events e = dao.findOne(dto.getId());
-		
+		e.getCategoryName().clear();
 		e = dto.convertToModel(e);
 		e.setUpdatedDate(new Date());
 		
@@ -162,6 +162,12 @@ public class EventImpl implements EventServ
 	{
 		daoImpl.deActivateDislikedEvents();
 	}
+	
+	@Override
+	public void deleteEvent(String eventId) 
+	{
+		dao.delete(eventId);
+	}
 
 	@Override
 	public AppStartResponseDto startUpEvent(Devices d) 
@@ -202,7 +208,7 @@ public class EventImpl implements EventServ
 		for(EventResponseDto dto : dtos)
 		{
 			Plans p = planDao.findOne(dto.getPlanId());
-			dto.setPlanDto(new PlanResponseDto().convetToDto(p));
+			dto.setPlan(new PlanResponseDto().convetToDto(p));
 		}
 		return dtos;
 	}

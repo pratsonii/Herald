@@ -39,4 +39,6 @@ public interface EventServ
 	AppStartResponseDto startUpEvent(Devices d);
 
 	void reactivateEvent(String eventId) throws BaseException;
+
+	void deleteEvent(String eventId);
 }

@@ -69,8 +69,11 @@ public class EventController
 	
 	@ApiOperation("update event")
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public ResponseEntity updateEvent(@RequestBody EventRequestDto dto)
+	public ResponseEntity updateEvent(@RequestBody EventRequestDto dto, HttpServletRequest request)
 	{
+		String email = (String) request.getHeader("email");
+		log.info("--- User/Email :"+email+" ---");
+		dto.setUserMailId(email);
 		serv.updateEvent(dto);
 		return new ResponseEntity(new RespEntity(null, Constants.updatSuccess), HttpStatus.OK);
 	}
@@ -111,5 +114,13 @@ public class EventController
 		serv.reactivateEvent(eventId);
 		rt.postForObject(notifierAddress, eventId, ResponseEntity.class);
 		return new ResponseEntity(new RespEntity(null, Constants.eventActivated), HttpStatus.OK);
+	}
+	
+	@ApiOperation("delete event")
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	public ResponseEntity deleteEvent(@RequestParam String eventId) throws BaseException
+	{
+		serv.deleteEvent(eventId);
+		return new ResponseEntity(new RespEntity(null, Constants.eventDeleted), HttpStatus.OK);
 	}
 }

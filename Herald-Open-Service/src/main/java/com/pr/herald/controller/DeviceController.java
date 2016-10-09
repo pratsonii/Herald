@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pr.herald.base.RespEntity;
+import com.pr.herald.contants.Constants;
 import com.pr.herald.dto.DeviceRequestDto;
 import com.pr.herald.service.DeviceServ;
 
@@ -35,7 +37,8 @@ public class DeviceController
 	public ResponseEntity addFavorite(@RequestBody DeviceRequestDto dto)	
 	{
 		serv.addFavorite(dto);
-		return new ResponseEntity<>(HttpStatus.OK);
+		RespEntity resp = new RespEntity(null, Constants.retriveSuccess);
+		return new ResponseEntity<>(resp,HttpStatus.OK);
 	}
 
 	
@@ -44,6 +47,7 @@ public class DeviceController
 	public ResponseEntity removeFavorite(@RequestBody DeviceRequestDto dto)	
 	{
 		serv.removeFavorite(dto);
-		return new ResponseEntity<>(HttpStatus.OK);
+		RespEntity resp = new RespEntity(null, Constants.retriveSuccess);
+		return new ResponseEntity<>(resp,HttpStatus.OK);
 	}
 }
