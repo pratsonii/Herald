@@ -40,7 +40,7 @@ public class StartUpController
 	public ResponseEntity<RespEntity<AppStartResponseDto>> start(@RequestBody DeviceRequestDto dto)
 	{
 		Devices d = deviceServ.upsertDevice(dto.convertToDto(null));
-		AppStartResponseDto returnDto = eventServ.startUpEvent(d);
+		AppStartResponseDto returnDto = eventServ.startUpEvent(d, dto.getDistance());
 		RespEntity<AppStartResponseDto> resp = new RespEntity(returnDto, Constants.retriveSuccess);
 		return new ResponseEntity(resp, HttpStatus.OK);
 	}

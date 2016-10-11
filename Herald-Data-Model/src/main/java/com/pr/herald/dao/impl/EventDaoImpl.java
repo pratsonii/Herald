@@ -71,7 +71,7 @@ public class EventDaoImpl
 		template.updateMulti(q, new Update().set("status", EventStatus.inActive), Events.class);
 	}
 	
-	public List<Events> findEventsNearPoint(Double lng, Double lat, Long distance, String category, String status)
+	public List<Events> findEventsNearPoint(Double lng, Double lat, Double distance, String category, String status)
 	{
 		Point point = new Point(lng, lat);
 		Distance d = new Distance(distance, Metrics.KILOMETERS);
@@ -114,7 +114,7 @@ public class EventDaoImpl
 		
 	}
 	
-	public List<Events> searchEvents(String searchString,Double lng, Double lat, Long distance,  String status)
+	public List<Events> searchEvents(String searchString,Double lng, Double lat, Double distance,  String status)
 	{
 		Point point = new Point(lng, lat);
 		Distance d = new Distance(distance, Metrics.KILOMETERS);

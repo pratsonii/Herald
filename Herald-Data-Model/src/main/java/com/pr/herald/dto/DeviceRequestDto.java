@@ -17,7 +17,7 @@ public class DeviceRequestDto
 	private Double lat;
 	private String userMailId;// @Id of users table
 	private String favCategories;
-	private Long distance;
+	private Double distance;
 	
 	@ApiModelProperty
 	public String getDeviceToken() {
@@ -27,7 +27,7 @@ public class DeviceRequestDto
 		this.deviceToken = deviceToken;
 	}
 	
-	@ApiModelProperty
+	@ApiModelProperty(position = 1)
 	public Double getLng() {
 		return lng;
 	}
@@ -35,7 +35,7 @@ public class DeviceRequestDto
 		this.lng = lng;
 	}
 	
-	@ApiModelProperty
+	@ApiModelProperty(position = 2)
 	public Double getLat() {
 		return lat;
 	}
@@ -58,10 +58,10 @@ public class DeviceRequestDto
 		this.favCategories = favCategories;
 	}
 	
-	public Long getDistance() {
+	public Double getDistance() {
 		return distance;
 	}
-	public void setDistance(Long distance) {
+	public void setDistance(Double distance) {
 		this.distance = distance;
 	}
 	

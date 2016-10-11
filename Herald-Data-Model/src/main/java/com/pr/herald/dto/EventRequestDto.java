@@ -10,6 +10,7 @@ import com.pr.herald.models.Location;
 import com.pr.herald.utility.CommonUtility;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel
 public class EventRequestDto 
@@ -42,12 +43,16 @@ public class EventRequestDto
 	public void setDeviceToken(String deviceToken) {
 		this.deviceToken = deviceToken;
 	}
+	
+	@ApiModelProperty(position = 1)
 	public Double getLng() {
 		return lng;
 	}
 	public void setLng(Double lng) {
 		this.lng = lng;
 	}
+	
+	@ApiModelProperty(position = 2)
 	public Double getLat() {
 		return lat;
 	}

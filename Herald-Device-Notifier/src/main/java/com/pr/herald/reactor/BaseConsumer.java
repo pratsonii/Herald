@@ -1,6 +1,9 @@
 package com.pr.herald.reactor;
 
+import java.io.IOException;
+
 import org.apache.log4j.Logger;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pr.herald.service.NotificationServ;
@@ -22,7 +25,7 @@ public class BaseConsumer
 	NotificationServ notificationServ;
 
 	@Selector("DEVICE_NOTIFICATION")
-	public void handleDeviceNotification(Event<NotificationData> evt) 
+	public void handleDeviceNotification(Event<NotificationData> evt) throws IOException, ParseException 
 	{
 		log.info("---- in Device Notification consumer----");
 		String eventId =(String) evt.getData().getData(DATA_TYPE.EVENT_ID);

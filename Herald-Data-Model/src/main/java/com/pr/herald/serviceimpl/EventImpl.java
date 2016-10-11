@@ -133,7 +133,7 @@ public class EventImpl implements EventServ
 	public List<Events> getNearByEvents(Double lng,
 									    Double lat, 
 									    String category, 
-									    Long distance) 
+									    Double distance) 
 	{
 		return daoImpl.findEventsNearPoint(lng, lat, distance, category, EventStatus.active);
 	}
@@ -170,14 +170,12 @@ public class EventImpl implements EventServ
 	}
 
 	@Override
-	public AppStartResponseDto startUpEvent(Devices d) 
+	public AppStartResponseDto startUpEvent(Devices d, Double distance) 
 	{
 		List<Events> events = getNearByEvents(d.getLocation().getX(), 
 											  d.getLocation().getY(), 
-//											  d.getLocation().getCoordinates()[0], 
-//											  d.getLocation().getCoordinates()[1], 
 											  EventCategories.featured, 
-											  Long.valueOf(50));
+											  distance);
 		
 		List<EventResponseDto> eventList = new EventResponseDto().convetToDto(events);
 		AppStartResponseDto dto = new AppStartResponseDto();
@@ -192,7 +190,7 @@ public class EventImpl implements EventServ
 	}
 
 	@Override
-	public List<Events> searchNearByEvents(Double lng, Double lat, String searchString, Long distance) 
+	public List<Events> searchNearByEvents(Double lng, Double lat, String searchString, Double distance) 
 	{
 		return daoImpl.searchEvents(searchString, lng, lat, distance, EventStatus.active);
 	}

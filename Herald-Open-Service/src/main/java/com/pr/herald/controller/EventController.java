@@ -52,7 +52,7 @@ public class EventController
 	public ResponseEntity<RespEntity<List<EventResponseDto>>> getNearByEvents(@RequestParam Double lng,
 																			  @RequestParam Double lat, 
 																			  @RequestParam String category, 
-																			  @RequestParam Long distance )
+																			  @RequestParam Double distance )
 	{
 		EventResponseDto e = new EventResponseDto();
 		List<EventResponseDto> result = e.convetToDto(serv.getNearByEvents(lng, lat, category, distance));
@@ -66,7 +66,7 @@ public class EventController
 	public ResponseEntity<RespEntity<List<EventResponseDto>>> searchByEvents(@RequestParam Double lng,
 																			  @RequestParam Double lat, 
 																			  @RequestParam String searchString, 
-																			  @RequestParam Long distance )
+																			  @RequestParam Double distance )
 	{
 		EventResponseDto e = new EventResponseDto();
 		List<EventResponseDto> result = e.convetToDto(serv.searchNearByEvents(lng, lat, searchString, distance));

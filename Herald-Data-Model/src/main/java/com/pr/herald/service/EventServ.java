@@ -21,12 +21,12 @@ public interface EventServ
 	List<Events> getNearByEvents(Double lng,
 								 Double lat, 
 								 String category, 
-								 Long distance);
+								 Double distance);
 	
 	List<Events> searchNearByEvents(Double lng,
 								 Double lat, 
 								 String searchString, 
-								 Long distance);
+								 Double distance);
 	
 	List<Events> getUserEvents(String mailId);
 	
@@ -36,7 +36,7 @@ public interface EventServ
 	
 	void deActivateDislikedEvents() ;
 	
-	AppStartResponseDto startUpEvent(Devices d);
+	AppStartResponseDto startUpEvent(Devices d, Double distance);
 
 	void reactivateEvent(String eventId) throws BaseException;
 
