@@ -41,6 +41,9 @@ public class EventController
 	
 	@Value("${event.notification.address}")
 	private String notifierAddress;
+	
+	@Value("${cross.gateway}")
+	private String cross;
 
 	@Value("${javatab.token.header}")
 	private String tokenHeader;
@@ -64,7 +67,7 @@ public class EventController
 		dto.checkMandatoryFields();
 		Events e = serv.addEvent(dto.convertToModel(null));
 		rt.postForObject(notifierAddress, e.getId(), ResponseEntity.class);
-		return new ResponseEntity(new RespEntity(null, Constants.eventSuccess), HttpStatus.OK);
+		return new ResponseEntity(new RespEntity(e.getId(), Constants.eventSuccess), HttpStatus.OK);
 	}
 	
 	@ApiOperation("update event")
