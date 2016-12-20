@@ -53,8 +53,7 @@ public class NotificationServImpl implements NotificationServ
 			
 			Notification n = new Notification(deviceTokens, event.getHeader(), event.getDescription());
 			JSONObject response = n.send();
-			Long notifyCount = (Long) response.get("success");
-			
+			Long notifyCount = (Long) response.get("success");			
 			
 			log.info("No of devices notified: "+notifyCount);
 			event.setNotifiedTo(Long.valueOf(notifyCount));

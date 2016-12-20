@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class DeviceRequestDto 
 {
+	private String imei;
 	private String deviceToken;
 	private Double lng;
 	private Double lat;
@@ -99,6 +100,14 @@ public class DeviceRequestDto
 	public void setFavCategories(String favCategories) {
 		this.favCategories = favCategories;
 	}
+	
+	public String getImei() {
+		return imei;
+	}
+	public void setImei(String imei) {
+		this.imei = imei;
+	}
+	
 	public Devices convertToDto(Devices d)
 	{
 		if(d == null)
@@ -111,6 +120,7 @@ public class DeviceRequestDto
 //		d.setLocation( new Location(LocationType.point, new Double[]{lng,lat}) );		
 		d.setUserMailId(userMailId);
 		d.setUpdatedDate(new Date());
+		d.setImei(imei);
 		
 		return d;
 	}

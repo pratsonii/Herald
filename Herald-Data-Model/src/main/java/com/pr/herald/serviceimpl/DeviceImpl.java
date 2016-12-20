@@ -21,7 +21,7 @@ public class DeviceImpl implements DeviceServ
 	@Override
 	public Devices upsertDevice(Devices d) 
 	{
-		Devices device = dao.findOne(d.getDeviceToken());
+		Devices device = dao.findOne(d.getImei());
 		
 		if(device == null)
 		{
@@ -32,6 +32,8 @@ public class DeviceImpl implements DeviceServ
 		else
 		{
 			device.setUpdatedDate(new Date());
+			device.setDeviceToken(d.getDeviceToken());
+			device.setLocation(d.getLocation());
 			dao.save(device);
 		}
 		
@@ -41,7 +43,7 @@ public class DeviceImpl implements DeviceServ
 	@Override
 	public void addFavorite(DeviceRequestDto dto) 
 	{
-		Devices d = dao.findOne(dto.getDeviceToken());
+		Devices d = dao.findOne(dto.getImei());
 		d.getFavCategories().add(dto.getCategory()); 
 		dao.save(d);
 	}
@@ -49,7 +51,7 @@ public class DeviceImpl implements DeviceServ
 	@Override
 	public void removeFavorite(DeviceRequestDto dto) 
 	{
-		Devices d = dao.findOne(dto.getDeviceToken());
+		Devices d = dao.findOne(dto.getImei());
 		d.getFavCategories().remove(dto.getCategory()); 
 		dao.save(d);
 	}

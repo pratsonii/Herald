@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class EventReactionDto 
 {
 	private String eventId;
-	private String deviceToken;
+	private String imei;
 	private String reaction;
 	
 	public String getEventId() {
@@ -18,13 +18,14 @@ public class EventReactionDto
 	public void setEventId(String eventId) {
 		this.eventId = eventId;
 	}
-	public String getDeviceToken() {
-		return deviceToken;
-	}
-	public void setDeviceToken(String deviceToken) {
-		this.deviceToken = deviceToken;
-	}
 	
+	
+	public String getImei() {
+		return imei;
+	}
+	public void setImei(String imei) {
+		this.imei = imei;
+	}
 	@ApiModelProperty(notes = "pass "+EventReaction.like+" or "+ EventReaction.dislike)
 	public String getReaction() {
 		return reaction;

@@ -111,22 +111,28 @@ public class EventImpl implements EventServ
 	}
 
 	@Override
-	public void updateReaction(EventReactionDto dto) 
+	public Events updateReaction(EventReactionDto dto) throws BaseException 
 	{
 		Events e = dao.findOne(dto.getEventId());
 		
+		boolean reacted = false;
+		
 		if(StringUtils.equalsIgnoreCase(dto.getReaction(), EventReaction.like))
 		{
-			e.getLikedByDevice().add(dto.getDeviceToken());
+			reacted = e.getLikedByDevice().add(dto.getImei());
 			e.setLikes((long) e.getLikedByDevice().size());
 		}
 		else if(StringUtils.equalsIgnoreCase(dto.getReaction(), EventReaction.dislike))
 		{
-			e.getDislikedByDevice().add(dto.getDeviceToken());
+			reacted = e.getDislikedByDevice().add(dto.getImei());
 			e.setDislikes((long) e.getDislikedByDevice().size() );
 		}
 		
-		dao.save(e);
+		if(!reacted)
+		{
+			throw new BaseException(" You have already reacted!");
+		}
+		return dao.save(e);
 	}
 
 	@Override

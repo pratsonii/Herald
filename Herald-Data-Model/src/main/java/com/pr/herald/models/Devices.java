@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "devices")
 public class Devices {
 	
+	private String imei;
 	private String deviceToken;
 	
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
@@ -27,6 +28,13 @@ public class Devices {
 	private String updatedBy;
 	
 	@org.springframework.data.annotation.Id
+	public String getImei() {
+		return imei;
+	}
+	public void setImei(String imei) {
+		this.imei = imei;
+	}
+	
 	public String getDeviceToken() {
 		return deviceToken;
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.pr.herald.base.BaseException;
 import com.pr.herald.base.RespEntity;
 import com.pr.herald.contants.Constants;
 import com.pr.herald.dto.EventReactionDto;
@@ -40,11 +41,13 @@ public class EventController
 	
 	@ApiOperation("update event Reaction")
 	@RequestMapping(value = "/updateReaction", method = RequestMethod.PUT)
-	public ResponseEntity updateEventReaction(@RequestBody EventReactionDto dto)
+	public ResponseEntity<RespEntity<EventResponseDto>> updateEventReaction(@RequestBody EventReactionDto dto) throws BaseException
 	{
-		serv.updateReaction(dto);
-		RespEntity resp = new RespEntity(null, Constants.retriveSuccess);
-		return new ResponseEntity<>(resp,HttpStatus.OK);
+		EventResponseDto e = new EventResponseDto();
+		EventResponseDto result = e.convetToDto(serv.updateReaction(dto));
+		RespEntity<EventResponseDto> resp = new RespEntity(result, Constants.retriveSuccess);
+		
+		return new ResponseEntity(resp, HttpStatus.OK);
 	}
 	
 	@ApiOperation("Get near by events")

@@ -16,7 +16,7 @@ public interface EventServ
 	
 	void updateEvent(EventRequestDto dto);
 	
-	void updateReaction(EventReactionDto dto);
+	Events updateReaction(EventReactionDto dto) throws BaseException;
 	
 	List<Events> getNearByEvents(Double lng,
 								 Double lat, 
