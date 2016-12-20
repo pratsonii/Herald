@@ -19,7 +19,6 @@ public class Constants
 	public static final String invalidEmail = "Invalid Mail Address";
 	public static final String invalidUserPass = "Invalid Username/Password";
 	public static final String cantEmpty = "Cannot Be Empty!";
-	public static final String MEDIA_TYPE = "application/json";
 
 	public static class EventStatus
 	{

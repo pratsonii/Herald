@@ -1,0 +1,6 @@
+applications:
+- name: herald-open
+memory: 512M
+path: target/herald-open-service-1.jar
+services:
+  - mongo

@@ -49,6 +49,22 @@ public class EventController
 	
 	@ApiOperation("Get near by events")
 	@RequestMapping(value = "/nearEvents", method = RequestMethod.GET)
+	public ResponseEntity<RespEntity<List<EventResponseDto>>> getNearByEvents(@RequestParam Double lng1,
+																			  @RequestParam Double lat1, 
+																			  @RequestParam Double lng2, 
+																			  @RequestParam Double lat2, 
+																			  @RequestParam String category, 
+																			  @RequestParam Double distance )
+	{
+		EventResponseDto e = new EventResponseDto();
+		List<EventResponseDto> result = e.convetToDto(serv.getEventsWithinBox(lng1, lat1, lng2, lat2, category));
+		RespEntity<List<EventResponseDto>> resp = new RespEntity<List<EventResponseDto>>(result, Constants.retriveSuccess);
+		
+		return new ResponseEntity(resp, HttpStatus.OK);
+	}
+	
+	@ApiOperation("Get near by events")
+	@RequestMapping(value = "/nearEventsCircle", method = RequestMethod.GET)
 	public ResponseEntity<RespEntity<List<EventResponseDto>>> getNearByEvents(@RequestParam Double lng,
 																			  @RequestParam Double lat, 
 																			  @RequestParam String category, 
@@ -71,6 +87,17 @@ public class EventController
 		EventResponseDto e = new EventResponseDto();
 		List<EventResponseDto> result = e.convetToDto(serv.searchNearByEvents(lng, lat, searchString, distance));
 		RespEntity<List<EventResponseDto>> resp = new RespEntity(result, Constants.retriveSuccess);
+		
+		return new ResponseEntity(resp, HttpStatus.OK);
+	}
+	
+	@ApiOperation("Get events by Id")
+	@RequestMapping(value = "/getEvent", method = RequestMethod.GET)
+	public ResponseEntity<RespEntity<EventResponseDto>> getEvents(@RequestParam String eventId )
+	{
+		EventResponseDto e = new EventResponseDto();
+		EventResponseDto result = e.convetToDto(serv.getEventByID(eventId));
+		RespEntity<EventResponseDto> resp = new RespEntity(result, Constants.retriveSuccess);
 		
 		return new ResponseEntity(resp, HttpStatus.OK);
 	}

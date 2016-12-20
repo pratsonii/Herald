@@ -19,6 +19,7 @@ public class Notification
 {
 	private static final String API_KEY = "AIzaSyDWvpor6gQhoWkCJdoiTW7vzJd6-Sf1SYc";
 	private static final String FCM_URL = "https://fcm.googleapis.com/fcm/send";
+	private static final String MEDIA_TYPE = "application/json";
 	
 	private List<String> deviceTokens;
 	private String msgTitle;
@@ -39,7 +40,7 @@ public class Notification
 	{
 		log.info("--- Excecuting method : send() ---");
 		OkHttpClient client = new OkHttpClient();
-        MediaType mediaType = MediaType.parse(Constants.MEDIA_TYPE);
+        MediaType mediaType = MediaType.parse(MEDIA_TYPE);
         JSONObject obj = new JSONObject();
         JSONObject msgObject = new JSONObject();
         msgObject.put("title", msgTitle);
@@ -52,7 +53,7 @@ public class Notification
 
         RequestBody body = RequestBody.create(mediaType, obj.toString());
         Request request = new Request.Builder().url(FCM_URL).post(body)
-        							 .addHeader("content-type", Constants.MEDIA_TYPE)
+        							 .addHeader("content-type", MEDIA_TYPE)
         							 .addHeader("authorization", "key="+API_KEY).build();
 
         log.info("--- Sending actual notifications ---");

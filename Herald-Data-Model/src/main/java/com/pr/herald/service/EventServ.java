@@ -36,9 +36,17 @@ public interface EventServ
 	
 	void deActivateDislikedEvents() ;
 	
-	AppStartResponseDto startUpEvent(Devices d, Double distance);
+	AppStartResponseDto startUpEvent(Devices d, Double lng1, Double lat1, Double lng2, Double lat2);
 
 	void reactivateEvent(String eventId) throws BaseException;
 
 	void deleteEvent(String eventId);
+
+	List<Events> getEventsWithinBox(Double lng1, 
+									Double lat1, 
+									Double lng2, 
+									Double lat2, 
+									String category);
+	
+	public Events getEventByID(String eventId);
 }

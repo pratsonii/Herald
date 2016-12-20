@@ -1,3 +1,4 @@
+#Local
 server:
   port: 8080
 zuul:
@@ -11,3 +12,18 @@ zuul:
     open:
       path: /openApp/**
       url: http://localhost:8096
+
+#zuul:
+#  routes:
+##    admin:
+##      path: /adminApp/**
+##      url: http://localhost:8082
+#    user:
+#      path: /userApp/**
+#      url: http://herald-user.cfapps.io
+#    open:
+#      path: /openApp/**
+#      url: http://herald-open.cfapps.io
+      
+      
+      

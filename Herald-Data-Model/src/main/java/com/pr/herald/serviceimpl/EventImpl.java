@@ -139,6 +139,16 @@ public class EventImpl implements EventServ
 	}
 
 	@Override
+	public List<Events> getEventsWithinBox(Double lng1, 
+		    							   Double lat1, 
+		    							   Double lng2, 
+		    							   Double lat2, 
+		    							   String category) 
+	{
+		return daoImpl.findEventsWithinBox(lng1, lat1, lng2, lat2, category, EventStatus.active);
+	}
+
+	@Override
 	public List<Events> getUserEvents(String mailId) 
 	{
 		return dao.findByUserMailIdOrderByStatusAscCreatedDateDesc(mailId);
@@ -170,12 +180,19 @@ public class EventImpl implements EventServ
 	}
 
 	@Override
-	public AppStartResponseDto startUpEvent(Devices d, Double distance) 
+	public AppStartResponseDto startUpEvent(Devices d, 
+											Double lng1, 
+											Double lat1, 
+											Double lng2, 
+											Double lat2) 
 	{
 		List<Events> events = getNearByEvents(d.getLocation().getX(), 
 											  d.getLocation().getY(), 
 											  EventCategories.featured, 
-											  distance);
+											  lng1);
+		
+//		List<Events> events = getEventsWithinBox(lng1, lat1, lng2, lat2, 
+//				  EventCategories.featured);
 		
 		List<EventResponseDto> eventList = new EventResponseDto().convetToDto(events);
 		AppStartResponseDto dto = new AppStartResponseDto();
@@ -209,6 +226,12 @@ public class EventImpl implements EventServ
 			dto.setPlan(new PlanResponseDto().convetToDto(p));
 		}
 		return dtos;
+	}
+
+	@Override
+	public Events getEventByID(String eventId) 
+	{
+		return dao.findOne(eventId);
 	}
 
 }

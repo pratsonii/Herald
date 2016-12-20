@@ -9,7 +9,9 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.geo.Box;
 import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.Polygon;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
@@ -76,9 +78,27 @@ public class EventDaoImpl
 		Point point = new Point(lng, lat);
 		Distance d = new Distance(distance, Metrics.KILOMETERS);
 		Circle c = new Circle(point, d);
-
 		return
 			    template.find(new Query(Criteria.where("location").withinSphere(c))
+			    				 .addCriteria(Criteria.where("categoryName").is(category))
+			    				 .addCriteria(Criteria.where("status").is(status)), 
+			    		     Events.class);
+		
+	}
+	
+	public List<Events> findEventsWithinBox(Double lng1, 
+										    Double lat1, 
+										    Double lng2, 
+										    Double lat2, 
+										    String category, 
+										    String status)
+	{
+		Point first = new Point(lng1, lat1);
+		Point second = new Point(lng2, lat2);
+		Box b = new Box(first, second);
+		
+		return
+			    template.find(new Query(Criteria.where("location").within(b))
 			    				 .addCriteria(Criteria.where("categoryName").is(category))
 			    				 .addCriteria(Criteria.where("status").is(status)), 
 			    		     Events.class);
